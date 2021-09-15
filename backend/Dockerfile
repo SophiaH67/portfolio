@@ -14,7 +14,8 @@ RUN php artisan route:cache
 RUN php artisan view:cache
 RUN php artisan optimize
 
-FROM php:latest AS runner
+FROM webdevops/php-apache:8.0-alpine AS runner
 WORKDIR /app
 COPY --from=composer-builder /app/ /app/
-CMD [ "php", "artisan", "serve" ]
+RUN chmod 0775 -R /app/storage/
+ENV WEB_DOCUMENT_ROOT /app/public/
