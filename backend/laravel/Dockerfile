@@ -17,5 +17,5 @@ RUN php artisan optimize
 FROM webdevops/php-apache:8.0-alpine AS runner
 WORKDIR /app
 COPY --from=composer-builder /app/ /app/
-RUN chmod 0775 -R /app/storage/
+RUN chmod 0777 -R /app/storage/
 ENV WEB_DOCUMENT_ROOT /app/public/
