@@ -1,25 +1,18 @@
 import Head from 'next/head'
-import createPersistedState from 'use-persisted-state';
-
-const useListState = createPersistedState('list');
+import Bar from './components/bar';
+import Section from './components/section';
+import Story from './components/story';
 
 export default function Home() {
-  const [list, setList]: [number[], (list: number[])=>void] = useListState([] as number[])
-  
   return (
     <div>
       <Head>
-        <title>Yeah</title>
+        <title>Marnix Hage Portfolio</title>
       </Head>
-      <button onClick={() => setList([Math.random(), ...list])}>
-        Click Me!
-      </button>
-      {list.map((i) => (
-        <div key={i}>
-          <h1>{i}</h1>
-          <p>Informatie over {i}</p>
-        </div>
-      ))}
+      <Bar />
+      <Section alt={true}>
+        <Story darkBackground={true} title="Some title" text="Some big story about this project" />
+      </Section>
     </div>
   )
 }
