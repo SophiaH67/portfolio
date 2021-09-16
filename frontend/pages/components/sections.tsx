@@ -18,9 +18,8 @@ export default function Sections() {
   return (
     <div>
       {stories.map((story, i) => (
-        <Section alt={i % 2 == 1}>
+        <Section key={i} alt={i % 2 == 1}>
           <Story
-            key={i}
             darkBackground={i % 2 == 1}
             title={story.title}
             text={story.description}
