@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import StoryInterface from '../interfaces/story'
+import StoryInterface from '../../interfaces/story'
 import Section from './section'
 import Story from './story'
 
