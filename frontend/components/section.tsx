@@ -1,4 +1,4 @@
-import circuitBoard from '../../styles/circuit-board.module.css'
+import circuitBoard from '../styles/circuit-board.module.css'
 
 interface Props {
   children: JSX.Element
