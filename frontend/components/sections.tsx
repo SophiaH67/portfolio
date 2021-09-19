@@ -8,7 +8,7 @@ export default function Sections() {
   const [stories, setStories] = useState<StoryInterface[]>([])
   useEffect(() => {
     console.log('Fetching api data...')
-    fetch('/api/getStories')
+    fetch(process.env.NEXT_PUBLIC_API_BASE + '/getStories')
       .then((res) => res.json())
       .then(setStories)
   }, [])
