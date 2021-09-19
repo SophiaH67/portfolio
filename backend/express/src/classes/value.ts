@@ -10,7 +10,7 @@ Value.init(
   {
     key: {
       type: DataTypes.STRING,
-      unique: true
+      unique: true,
     },
     value: DataTypes.STRING,
   },
