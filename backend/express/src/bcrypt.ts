@@ -19,23 +19,22 @@ const getSalt = async () => {
 }
 
 export const getPasswordHash = async () => {
-  const result = await Value.findOne({ where: { key: 'PASSWORD_HASH' } })
-  return result?.value || ''
+  let result = await Value.findOne({ where: { key: 'PASSWORD_HASH' } })
+  if (!result) {
+    result = await Value.create({
+      key: 'PASSWORD_HASH',
+      value: await hashPassword('password'),
+    })
+    await result.save()
+  }
+  return result.value
 }
 
 export const setPasswordHash = async (passwordHash: string) => {
-  if (await getPasswordHash()) {
-    const result = await Value.findOne({ where: { key: 'PASSWORD_HASH' } })
-    if (!result) return // make TS shut up
-    result.value = passwordHash
-    await result.save()
-  } else {
-    const hash = await Value.create({
-      key: 'PASSWORD_HASH',
-      value: passwordHash,
-    })
-    await hash.save()
-  }
+  const result = await Value.findOne({ where: { key: 'PASSWORD_HASH' } })
+  if (!result) return // make TS shut up
+  result.value = passwordHash
+  await result.save()
 }
 
 export const validatePasswordHash = async (passwordHash: string) => safeCompare(passwordHash, await getPasswordHash())
