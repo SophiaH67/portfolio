@@ -2,12 +2,14 @@ import express, { Application, Request, Response } from 'express'
 import { getPasswordHash, hashPassword, setPasswordHash, validatePasswordHash } from './bcrypt'
 import { Story } from './classes/story'
 import { sequelize } from './db'
+import cors from 'cors'
 
 require('dotenv').config()
 
 const app: Application = express()
 const port = 3000
 
+app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
