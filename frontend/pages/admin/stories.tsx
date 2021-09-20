@@ -6,11 +6,26 @@ import StoryInterface from '../../interfaces/story'
 import { getStories } from '../../lib/api'
 import HashLoader from 'react-spinners/HashLoader'
 
+interface EditableStory extends StoryInterface {
+  editing: boolean
+}
+
 export default function Home() {
-  const [stories, setStories] = useState<StoryInterface[]>([])
+  const [stories, setStories] = useState<EditableStory[]>([])
 
   useEffect(() => {
-    getStories().then(setStories)
+    getStories().then((stories) =>
+      setStories(
+        stories.map(
+          (story) =>
+            ({
+              title: story.title,
+              description: story.description,
+              editing: false,
+            } as EditableStory)
+        )
+      )
+    )
   }, [])
   return (
     <div>
@@ -25,7 +40,7 @@ export default function Home() {
               <HashLoader loading={true} color='#6D28D9'></HashLoader>
             </div>
           ) : (
-            <div className="max-w-7xl mx-auto">
+            <div className='max-w-5xl mx-auto'>
               <table className='table-auto'>
                 <thead>
                   <tr>
@@ -35,11 +50,19 @@ export default function Home() {
                   </tr>
                 </thead>
                 <tbody>
-                  {stories.map((story) => (
-                    <tr>
-                      <td>{story.title}</td>
-                      <td>{story.description}</td>
-                      <td><button>Edit</button></td>
+                  {stories.map((story, i) => (
+                    <tr key={i}>
+                      <td><input type="text" className="w-screen" value={story.title} /></td>
+                      <td><input type="text" className="w-96" value={story.description} /></td>
+                      <td className='text-center'>
+                        <button className='bg-purple-700 p-2 rounded-md text-gray-200' onClick={() => {
+                          const newStories = [...stories]
+                          newStories[i].editing = !newStories[i].editing
+                          setStories(newStories)
+                        }}>
+                          {story.editing ? 'Save' : 'Edit'}
+                        </button>
+                      </td>
                     </tr>
                   ))}
                 </tbody>
