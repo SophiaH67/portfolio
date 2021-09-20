@@ -1,6 +1,7 @@
 import { createRef, useEffect, useState } from 'react'
 import createPersistedState from 'use-persisted-state'
 import { hashPassword, validateHash } from '../lib/api'
+import Input from './input'
 
 const useHashSate = createPersistedState('hash')
 
@@ -33,27 +34,17 @@ export default function Authorized({ children }: Props) {
             Authorization Required
           </h2>
           <div>
-            <form>
-              <input
-                onInput={(e) => {
-                  const element = e.target as HTMLInputElement
-                  setPassword(element.value)
-                }}
-                className='min-w-full border-2 border-gray-300 rounded-md my-1 focus:outline-none'
-                type='password'
-                placeholder='password'
-              ></input>
-              <button
-                disabled={authorizing}
-                onClick={onClick}
-                className={`min-w-full p-1 text-gray-100 rounded-md my-1 ${
-                  authorizing ? 'bg-gray-300' : 'bg-purple-700'
-                }`}
-                id='submit-button'
-              >
-                Submit
-              </button>
-            </form>
+            <Input type='password' state={[password, setPassword]} />
+            <button
+              disabled={authorizing}
+              onClick={onClick}
+              className={`min-w-full p-1 text-gray-100 rounded-md my-1 ${
+                authorizing ? 'bg-gray-300' : 'bg-purple-700'
+              }`}
+              id='submit-button'
+            >
+              Submit
+            </button>
           </div>
         </div>
       )}
