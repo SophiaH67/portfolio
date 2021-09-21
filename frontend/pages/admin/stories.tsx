@@ -3,8 +3,9 @@ import { useEffect, useState } from 'react'
 import Authorized from '../../components/authorized'
 import Bar from '../../components/bar'
 import StoryInterface from '../../interfaces/story'
-import { getStories } from '../../lib/api'
+import { getStories, updateStory } from '../../lib/api'
 import HashLoader from 'react-spinners/HashLoader'
+import Input from '../../components/input'
 
 interface EditableStory extends StoryInterface {
   editing: boolean
@@ -12,21 +13,51 @@ interface EditableStory extends StoryInterface {
 
 export default function Home() {
   const [stories, setStories] = useState<EditableStory[]>([])
+  const [update, setUpdate] = useState(Math.random())
+
+  const [title, setTitle] = useState('')
+  const [description, setDescription] = useState('')
+  const [editing, setEditing] = useState(false)
+
+  const edit = (i: number) => {
+    if (editing) return
+    const tmpState = [...stories]
+    tmpState[i].editing = true
+    setTitle(tmpState[i].title)
+    setDescription(tmpState[i].description)
+    setEditing(true)
+    setStories(tmpState)
+  }
+
+  const save = (i: number) => {
+    const currentStory = stories[i]
+    updateStory(currentStory.id, title, description)
+
+    const tmpState = [...stories]
+    tmpState[i].editing = false
+    tmpState[i].title = title
+    tmpState[i].description = description
+    setTitle('')
+    setDescription('')
+    setEditing(false)
+    setStories(tmpState)
+    setUpdate(Math.random())
+  }
 
   useEffect(() => {
     getStories().then((stories) =>
       setStories(
-        stories.map(
-          (story) =>
-            ({
-              title: story.title,
-              description: story.description,
-              editing: false,
-            } as EditableStory)
-        )
+        stories.map((story) => {
+          return {
+            id: story.id,
+            title: story.title,
+            description: story.description,
+            editing: false,
+          } as EditableStory
+        })
       )
     )
-  }, [])
+  }, [update])
   return (
     <div>
       <Head>
@@ -41,25 +72,41 @@ export default function Home() {
             </div>
           ) : (
             <div className='max-w-5xl mx-auto'>
-              <table className='table-auto'>
-                <thead>
-                  <tr>
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th>Actions</th>
+              <table className='table-auto border-2'>
+                <thead className="border-4">
+                  <tr className="border-4">
+                    <th className="font-semibold text-gray-800">Title</th>
+                    <th className="font-semibold text-gray-800">Description</th>
+                    <th className="font-semibold text-gray-800">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
                   {stories.map((story, i) => (
                     <tr key={i}>
-                      <td><input type="text" className="w-screen" value={story.title} /></td>
-                      <td><input type="text" className="w-96" value={story.description} /></td>
-                      <td className='text-center'>
-                        <button className='bg-purple-700 p-2 rounded-md text-gray-200' onClick={() => {
-                          const newStories = [...stories]
-                          newStories[i].editing = !newStories[i].editing
-                          setStories(newStories)
-                        }}>
+                      <td className="border-2">
+                        {story.editing ? (
+                          <Input type='text' state={[title, setTitle]} />
+                        ) : (
+                          <p>{story.title}</p>
+                        )}
+                      </td>
+                      <td className="border-2">
+                        {story.editing ? (
+                          <Input
+                            type='text'
+                            state={[description, setDescription]}
+                          />
+                        ) : (
+                          <p>{story.description}</p>
+                        )}
+                      </td>
+                      <td className='text-center border-2'>
+                        <button
+                          className='bg-purple-700 p-2 rounded-md text-gray-200'
+                          onClick={
+                            story.editing ? () => save(i) : () => edit(i)
+                          }
+                        >
                           {story.editing ? 'Save' : 'Edit'}
                         </button>
                       </td>

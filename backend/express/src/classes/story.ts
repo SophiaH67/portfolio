@@ -1,7 +1,10 @@
 import { Model, DataTypes } from 'sequelize'
 import { sequelize } from '../db'
 
-export class Story extends Model {}
+export class Story extends Model {
+  title: string
+  description: string
+}
 
 Story.init(
   {

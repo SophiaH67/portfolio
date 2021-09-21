@@ -3,13 +3,21 @@ import { getPasswordHash, hashPassword, setPasswordHash, validatePasswordHash } 
 import { Story } from './classes/story'
 import { sequelize } from './db'
 import cors from 'cors'
+import assert from 'assert'
 
 require('dotenv').config()
 
 const app: Application = express()
 const port = 3000
 
-app.use(cors())
+app.use(cors({
+  "origin": "*",
+  "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+  credentials: true,
+  allowedHeaders: ['authorization', 'Content-Type', 'body'],
+  "preflightContinue": false,
+  "optionsSuccessStatus": 204
+}))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
@@ -31,6 +39,19 @@ app.post('/hash', async (req: Request, res: Response) => {
   if (typeof req.body.password != 'string') return res.status(400).end()
 
   res.send(await hashPassword(req.body.password))
+})
+
+app.patch('/stories', async (req: Request, res: Response) => {
+  if (!(await authorizedRequest(req, res))) return
+  assert(typeof req.body.id == 'number')
+  assert(typeof req.body.title == 'string')
+  assert(typeof req.body.description == 'string')
+  const story = await Story.findOne({where: {id: req.body.id}})
+  if(!story) return res.status(404)
+  story.title = req.body.title
+  story.description = req.body.description
+  await story.save()
+  return
 })
 
 app.put('/hash', async (req, res) => {

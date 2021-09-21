@@ -1,9 +1,8 @@
 import { createRef, useEffect, useState } from 'react'
-import createPersistedState from 'use-persisted-state'
 import { hashPassword, validateHash } from '../lib/api'
+import { getHash, setHash } from '../lib/hashState'
 import Input from './input'
 
-const useHashSate = createPersistedState('hash')
 
 interface Props {
   children: JSX.Element | never[]
@@ -13,17 +12,22 @@ export default function Authorized({ children }: Props) {
   const [authorized, setAuthorized] = useState(false)
   const [authorizing, setAuthorizing] = useState(false)
   const [password, setPassword] = useState('')
-  const [hash, setHash] = useHashSate('')
+  
+  const authorize = () => validateHash(getHash()).then(setAuthorized)
 
-  useEffect(() => {
-    validateHash(hash).then(setAuthorized)
-  }, [hash])
+  const setHashAndCheck = (hash: string) => {
+    setHash(hash)
+    authorize()
+  }
 
   const onClick = async () => {
     setAuthorizing(true)
-    setHash(await hashPassword(password))
+    setHashAndCheck(await hashPassword(password))
     setAuthorizing(false)
   }
+
+  useEffect(() => {authorize()})
+
   return (
     <>
       {authorized ? (
