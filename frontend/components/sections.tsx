@@ -6,15 +6,18 @@ import HashLoader from 'react-spinners/HashLoader'
 
 export default function Sections() {
   const [stories, setStories] = useState<StoryInterface[]>([])
+  const [loaded, setLoaded] = useState(false)
+
   useEffect(() => {
     console.log('Fetching api data...')
     fetch(process.env.NEXT_PUBLIC_API_BASE + '/getStories')
       .then((res) => res.json())
       .then(setStories)
+      .then(()=>setLoaded(true))
   }, [])
   return (
     <div>
-      {!stories.length ? (
+      {!loaded ? (
         <div className='text-center mt-20'>
           <HashLoader loading={true} color='#6D28D9'></HashLoader>
         </div>
