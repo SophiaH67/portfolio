@@ -31,6 +31,12 @@ export const getStories = async (): Promise<StoryInterface[]> =>
 export const changeHash = async (newHash: string) =>
   await request('PUT', '/hash', { hash: newHash }, true)
 
+export const addStory = async() =>
+  await request('POST', '/stories', {}, true)
+
+export const deleteStory = async(id: number) =>
+    await request('DELETE', '/stories', {id: id}, true)
+
 export const updateStory = async (
   id: number,
   title: string,

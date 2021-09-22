@@ -54,6 +54,26 @@ app.patch('/stories', async (req: Request, res: Response) => {
   return
 })
 
+app.post('/stories', async (req: Request, res: Response) => {
+  if (!(await authorizedRequest(req, res))) return
+  const i = Math.random()
+  const newStory = await Story.create({
+    title: `Some Title${i}`,
+    description: `Some long *markdown* enabled description about a story with the title of ${i}`,
+  })
+  await newStory.save()
+  res.send(newStory).status(200)
+})
+
+app.delete('/stories', async (req: Request, res: Response) => {
+  if (!(await authorizedRequest(req, res))) return
+  assert(typeof req.body.id == 'number')
+  const story = await Story.findOne({where: {id: req.body.id}})
+  if(!story) return res.status(404)
+  await story.destroy()
+  return res.status(200).send()
+})
+
 app.put('/hash', async (req, res) => {
   let f = await getPasswordHash()
   console.log(JSON.stringify({ value: f }))
@@ -72,17 +92,6 @@ app.post('/validateHash', async (req: Request, res: Response) => {
   res.send(await validatePasswordHash(req.body.hash))
 })
 
-// DEV: to test database
-app.get('/addOne', async (_req: Request, res: Response) => {
-  const i = Math.random()
-  const newStory = await Story.create({
-    title: `Some Title${i}`,
-    description: `Some long *markdown* enabled description about a story with the title of ${i}`,
-  })
-  await newStory.save()
-  await sequelize.sync()
-  res.send(newStory).status(200)
-})
 
 app.listen(port, () => {
   console.log(`Running on port ${port}`)
