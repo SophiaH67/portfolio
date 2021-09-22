@@ -13,6 +13,7 @@ interface EditableStory extends StoryInterface {
 
 export default function Home() {
   const [stories, setStories] = useState<EditableStory[]>([])
+  const [loaded, setLoaded] = useState(false)
   const [update, setUpdate] = useState(Math.random())
 
   const [title, setTitle] = useState('')
@@ -45,6 +46,7 @@ export default function Home() {
   }
 
   useEffect(() => {
+    setLoaded(false)
     getStories().then((stories) =>
       setStories(
         stories.map((story) => {
@@ -56,7 +58,7 @@ export default function Home() {
           } as EditableStory
         })
       )
-    )
+    ).then(() => setLoaded(true))
   }, [update])
   return (
     <div>
@@ -66,7 +68,7 @@ export default function Home() {
       <Bar />
       <Authorized>
         <div>
-          {stories.length == 0 ? (
+          {!loaded ? (
             <div className='text-center mt-20'>
               <HashLoader loading={true} color='#6D28D9'></HashLoader>
             </div>
