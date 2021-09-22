@@ -1,4 +1,4 @@
-import { createRef, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { hashPassword, validateHash } from '../lib/api'
 import { getHash, setHash } from '../lib/hashState'
 import Input from './input'
