@@ -75,12 +75,8 @@ app.delete('/stories', async (req: Request, res: Response) => {
   return res.status(200).send()
 })
 
-app.put('/hash', async (req, res) => {
-  let f = await getPasswordHash()
-  console.log(JSON.stringify({ value: f }))
-  if (await getPasswordHash()) {
-    console.log('bruh')
-    if (!(await authorizedRequest(req, res))) return
+app.get('/value', async (req, res) => {
+  if (!(await authorizedRequest(req, res))) return
   assert(typeof req.body.key == 'string')
   res.send(await Value.findOne({where: {key: req.body.key}})).status(200)
 })
