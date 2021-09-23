@@ -27,7 +27,7 @@ RUN npx next export
 
 FROM node:latest AS laravel-node-builder
 WORKDIR /app
-COPY ./backend/laravel/ .
+COPY ./backend/ .
 RUN npm install
 RUN npm run production
 
