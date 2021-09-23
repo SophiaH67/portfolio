@@ -32,7 +32,7 @@ const authorizedRequest = async (req: Request, res: Response): Promise<boolean> 
   return false
 }
 
-app.get('/getStories', async (_req: Request, res: Response) => {
+app.get('/stories', async (_req: Request, res: Response) => {
   res.send(await Story.findAll())
 })
 

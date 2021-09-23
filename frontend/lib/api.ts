@@ -25,7 +25,7 @@ export const validateHash = async (hash: string) =>
 
 export const getStories = async (): Promise<StoryInterface[]> =>
   (
-    (await (await request('GET', '/getStories')).json()) as StoryInterface[]
+    (await (await request('GET', '/stories')).json()) as StoryInterface[]
   ).sort(({ id: a }, { id: b }) => b - a)
 
 export const changeValue = async (key:string, value: string) =>
