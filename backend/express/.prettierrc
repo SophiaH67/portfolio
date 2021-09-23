@@ -1,8 +1,0 @@
-{
-  "arrowParens": "always",
-  "semi": false,
-  "singleQuote": true,
-  "jsxSingleQuote": true,
-  "printWidth": 128,
-  "tabWidth": 2
-}
