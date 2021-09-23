@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { hashPassword, validateHash } from '../lib/api'
-import { getHash, setHash } from '../lib/hashState'
+import { getHash, onHashChange, setHash } from '../lib/hashState'
 import Input from './input'
 
 
@@ -26,7 +26,7 @@ export default function Authorized({ children }: Props) {
     setAuthorizing(false)
   }
 
-  useEffect(() => {authorize()})
+  useEffect(() => {onHashChange(() => authorize())},[])
 
   return (
     <>
