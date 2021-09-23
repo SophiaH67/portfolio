@@ -3,6 +3,7 @@ import StoryInterface from '../interfaces/story'
 import Section from './section'
 import Story from './story'
 import HashLoader from 'react-spinners/HashLoader'
+import { getStories } from '../lib/api'
 
 export default function Sections() {
   const [stories, setStories] = useState<StoryInterface[]>([])
@@ -10,8 +11,7 @@ export default function Sections() {
 
   useEffect(() => {
     console.log('Fetching api data...')
-    fetch(process.env.NEXT_PUBLIC_API_BASE + '/getStories')
-      .then((res) => res.json())
+    getStories()
       .then(setStories)
       .then(()=>setLoaded(true))
   }, [])
