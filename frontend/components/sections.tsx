@@ -28,6 +28,7 @@ export default function Sections() {
               darkBackground={i % 2 == 1}
               title={story.title}
               text={story.description}
+              className={i==0?"min-h-screen":''}
             />
           </Section>
         ))
