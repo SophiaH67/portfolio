@@ -30,13 +30,6 @@ export const getPasswordHash = async () => {
   return result.value
 }
 
-export const setPasswordHash = async (passwordHash: string) => {
-  const result = await Value.findOne({ where: { key: 'PASSWORD_HASH' } })
-  if (!result) return // make TS shut up
-  result.value = passwordHash
-  await result.save()
-}
-
 export const validatePasswordHash = async (passwordHash: string) => safeCompare(passwordHash, await getPasswordHash())
 
 export const hashPassword = async (password: string) => hash(password, await getSalt())

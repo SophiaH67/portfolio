@@ -1,9 +1,10 @@
 import express, { Application, Request, Response } from 'express'
-import { getPasswordHash, hashPassword, setPasswordHash, validatePasswordHash } from './bcrypt'
+import { hashPassword, validatePasswordHash } from './bcrypt'
 import { Story } from './classes/story'
 import { sequelize } from './db'
 import cors from 'cors'
 import assert from 'assert'
+import { Value } from './classes/value'
 
 require('dotenv').config()
 
@@ -80,10 +81,20 @@ app.put('/hash', async (req, res) => {
   if (await getPasswordHash()) {
     console.log('bruh')
     if (!(await authorizedRequest(req, res))) return
-  }
-  if (typeof req.body.hash != 'string') return res.status(400).end()
-  await setPasswordHash(req.body.hash)
-  res.status(200).end()
+  assert(typeof req.body.key == 'string')
+  res.send(await Value.findOne({where: {key: req.body.key}})).status(200)
+})
+
+app.put('/value', async (req, res) => {
+  if (!(await authorizedRequest(req, res))) return
+  assert(typeof req.body.key == 'string')
+  assert(typeof req.body.value == 'string')
+  const target = await Value.findOne({where: {key: req.body.key}})
+  if(!target) return res.status(404).send()
+  target.value = req.body.value
+  res.status(200).send()
+  await target.save()
+  return
 })
 
 app.post('/validateHash', async (req: Request, res: Response) => {
