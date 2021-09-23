@@ -8,15 +8,15 @@ export default function Bar() {
       <header className='bg-white shadow border-t-4 border-purple-700'>
         <div className='container mx-auto px-6 py-4'>
           <div className='flex items-center justify-between'>
-            <div className='text-black'>Marnix Hage</div>
+            <div className='text-black'>{process.env.NEXT_PUBLIC_NAME}</div>
             <div className="flex flex-row-reverse">
               <div className="mx-4">
-                <a href='https://github.com/marnixah'>
+                <a href={`https://github.com/${process.env.NEXT_PUBLIC_GITHUB}`}>
                   <FontAwesomeIcon icon={faGithub}></FontAwesomeIcon>
                 </a>
               </div>
               <div>
-                <a href='mailto:business@marnixah.com'>
+                <a href={`mailto:${process.env.NEXT_PUBLIC_EMAIL}`}>
                   <FontAwesomeIcon icon={faEnvelope}></FontAwesomeIcon>
                 </a>
               </div>

@@ -66,7 +66,7 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>Marnix Hage Portfolio</title>
+        <title>{process.env.NEXT_PUBLIC_NAME} Portfolio</title>
       </Head>
       <Bar />
       <Authorized>
