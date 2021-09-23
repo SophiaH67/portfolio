@@ -28,8 +28,8 @@ export const getStories = async (): Promise<StoryInterface[]> =>
     (await (await request('GET', '/getStories')).json()) as StoryInterface[]
   ).sort(({ id: a }, { id: b }) => b - a)
 
-export const changeHash = async (newHash: string) =>
-  await request('PUT', '/hash', { hash: newHash }, true)
+export const changeValue = async (key:string, value: string) =>
+  await request('PUT', '/value', { key: key, value: value }, true)
 
 export const addStory = async() =>
   await request('POST', '/stories', {}, true)

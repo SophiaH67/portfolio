@@ -5,6 +5,7 @@ import Bar from '../../components/bar'
 import Button from '../../components/button'
 import Input from '../../components/input'
 import Section from '../../components/section'
+import { changeValue, hashPassword } from '../../lib/api'
 
 export default function Home() {
   const [password, setPassword] = useState('')
@@ -22,8 +23,10 @@ export default function Home() {
               <div>
                 <span className="text-left text-gray-400 text-xs">Password</span>
                 <Input state={[password, setPassword]} type="password"></Input>
+                <Button className="p-0.5" onClick={async () => {
+                  changeValue('PASSWORD_HASH', await hashPassword(password)).then(()=>window.location.reload())
+                }}>Save</Button>
               </div>
-              <Button className="py-0.5">Save</Button>
             </div>
           </div>
         </Section>
