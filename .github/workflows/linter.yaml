@@ -16,10 +16,11 @@ jobs:
       - name: Install depenancies
         uses: bahmutov/npm-install@v1
         with:
+          working-directory: frontend
           install-command: yarn --frozen-lockfile
 
       - name: next lint
         uses: ./
         with:
-          command: npx next lint
           working-directory: frontend
+          command: npx next lint
