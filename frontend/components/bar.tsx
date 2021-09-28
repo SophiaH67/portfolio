@@ -4,14 +4,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export default function Bar() {
   return (
-    <div className=''>
+    <div className='fixed top-0 min-w-full'>
       <header className='bg-white shadow border-t-4 border-purple-700'>
         <div className='container mx-auto px-6 py-4'>
           <div className='flex items-center justify-between'>
-            <div className='text-black'>{process.env.NEXT_PUBLIC_NAME}</div>
+            <div className='text-black'><a href="/">Marnix</a></div>
             <div className="flex flex-row-reverse">
               <div className="mx-4">
-                <a href={`https://github.com/${process.env.NEXT_PUBLIC_GITHUB}`}>
+                <a href={`https://github.com/marnixah`}>
                   <FontAwesomeIcon icon={faGithub}></FontAwesomeIcon>
                 </a>
               </div>
