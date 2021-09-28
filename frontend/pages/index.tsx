@@ -1,15 +1,19 @@
 import Head from 'next/head'
 import Bar from '../components/bar';
-import Sections from '../components/sections';
+import CurriculumVitae from '../components/curriculumVitae';
+import Name from '../components/name'
+import Projects from '../components/projects'
 
 export default function Home() {
   return (
     <div>
       <Head>
-        <title>{process.env.NEXT_PUBLIC_NAME} Portfolio</title>
+        <title>Marnix Portfolio</title>
       </Head>
       <Bar />
-      <Sections />
+      <Name />
+      <Projects />
+      <CurriculumVitae />
     </div>
   )
 }
