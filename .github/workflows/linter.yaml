@@ -1,0 +1,25 @@
+name: next lint
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    name: next lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Install depenancies
+        uses: bahmutov/npm-install@v1
+        with:
+          install-command: yarn --frozen-lockfile
+
+      - name: next lint
+        uses: ./
+        with:
+          command: npx next lint
+          working-directory: frontend
