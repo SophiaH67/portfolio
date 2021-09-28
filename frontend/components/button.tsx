@@ -16,9 +16,7 @@ export default function Button({
     <button
       disabled={!!disabled}
       onClick={onClick}
-      className={`${className || ''} text-gray-200 rounded-md p-2 my-1 ${
-        disabled ? 'bg-gray-300' : bgClass || 'bg-purple-700'
-      } `}
+      className={`${className || ''} text-gray-200 rounded-md p-2 my-1 ${bgClass||'bg-purple-700'} disabled:bg-gray-300`}
     >
       {children}
     </button>
