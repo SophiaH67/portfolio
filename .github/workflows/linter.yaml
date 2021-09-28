@@ -20,7 +20,4 @@ jobs:
           install-command: yarn --frozen-lockfile
 
       - name: next lint
-        uses: ./
-        with:
-          working-directory: frontend
-          command: npx next lint
+        run: bash -c "cd frontend && npx next lint"
