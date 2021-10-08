@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import MessageCard from '../../components/messageCard'
 import Section from '../../components/section'
-import axios from 'axios'
 import Message from '../../interfaces/message'
 
 export default function Messages() {

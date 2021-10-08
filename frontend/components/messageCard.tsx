@@ -1,5 +1,4 @@
-import Button from './button'
-import { faCheckCircle, faBan } from '@fortawesome/free-solid-svg-icons'
+import { faBan } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Message from '../interfaces/message'
 import { deleteMessage } from '../lib/api'
