@@ -1,14 +1,10 @@
 import Button from './button'
 import { faCheckCircle, faBan } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Message from '../interfaces/message'
 
-interface Props {
+interface Props extends Message {
   className?: string
-  id: number
-  ip: string
-  email: string
-  name: string
-  message: string
 }
 
 export default function MessageCard({ className, id, ip, email, name, message }: Props) {
