@@ -32,4 +32,12 @@ class MessageController extends Controller
         return $message;
 
     }
+
+    public function destroy($id) {
+        $message = Message::findOrFail($id);
+
+        $message->delete();
+
+        return;
+    }
 }
