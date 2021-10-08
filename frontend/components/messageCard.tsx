@@ -3,6 +3,7 @@ import { faCheckCircle, faBan } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 interface Props {
+  className?: string
   id: number
   ip: string
   email: string
@@ -10,9 +11,9 @@ interface Props {
   message: string
 }
 
-export default function MessageCard({ id, ip, email, name, message }: Props) {
+export default function MessageCard({ className, id, ip, email, name, message }: Props) {
   return (
-    <div className='w-full md:w-96 md:max-w-xl bg-white shadow-xl rounded-lg'>
+    <div className={'w-full md:w-96 md:max-w-xl bg-white shadow-xl rounded-lg ' + className||''}>
       <div className='pt-6 px-3 pb-4'>
         <h2 className='text-4xl text-gray-800'>{name}</h2>
         <h3 className='text-gray-600'>{ip}</h3>
