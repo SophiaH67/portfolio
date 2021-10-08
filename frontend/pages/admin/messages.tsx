@@ -19,6 +19,13 @@ export default function Messages() {
         {messages.map((message) => (
           <MessageCard
             className='mx-4 my-2'
+            onDelete={() =>
+              setMessages((prevState) =>
+                prevState.filter(
+                  (filterMessage) => filterMessage.id !== message.id
+                )
+              )
+            }
             key={message.id}
             message={message.message}
             email={message.email}

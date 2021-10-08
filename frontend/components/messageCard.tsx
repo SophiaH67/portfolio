@@ -2,12 +2,14 @@ import Button from './button'
 import { faCheckCircle, faBan } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Message from '../interfaces/message'
+import { deleteMessage } from '../lib/api'
 
 interface Props extends Message {
   className?: string
+  onDelete: () => void
 }
 
-export default function MessageCard({ className, id, ip, email, name, message }: Props) {
+export default function MessageCard({ className, id, ip, email, name, message, onDelete }: Props) {
   return (
     <div className={'w-full md:w-96 md:max-w-xl bg-white shadow-xl rounded-lg ' + className||''}>
       <div className='pt-6 px-3 pb-4'>
@@ -22,7 +24,11 @@ export default function MessageCard({ className, id, ip, email, name, message }:
               <label className='text-gray-800'>ID: {id}</label>
             </span>
             <span className='inline-block ring-4 ring-gray-200 rounded-full text-sm px-3 pt-0.5 bg-gray-200'>
-              <button title='Delete'>
+              <button title='Delete' onClick={()=>{
+                deleteMessage(id)
+                onDelete()
+              }
+              }>
                 <FontAwesomeIcon className='text-red-500' icon={faBan} />
               </button>
             </span>
