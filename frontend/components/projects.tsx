@@ -18,7 +18,7 @@ export default function Projects() {
   }, [])
 
   return (
-    <div className='min-h-min bg-gray-800 pb-20 block'>
+    <div className='min-h-min bg-gray-800 pb-20 block w-full'>
       <h2 className='pt-24 pb-12 text-gray-100 font-semibold mx-auto max-w-min text-6xl'>
         Projects
       </h2>
