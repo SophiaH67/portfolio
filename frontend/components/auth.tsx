@@ -1,5 +1,6 @@
 import axios, { AxiosError } from 'axios'
 import { FormEvent, useState } from 'react'
+import { getBackendBase } from '../lib/api'
 import Button from './button'
 import Input from './input'
 
@@ -31,10 +32,10 @@ export default function Modal() {
     axios.defaults.withCredentials = true
     axios.defaults.headers = {accept: 'application/json'};
 
-    axios.get('http://127.0.0.1:8000/sanctum/csrf-cookie').then(() =>{
+    axios.get(`${getBackendBase()}/sanctum/csrf-cookie`).then(() =>{
       axios
         .post(
-          `http://127.0.0.1:8000/${signUp ? 'register' : 'login'}`,
+          `${getBackendBase()}/${signUp ? 'register' : 'login'}`,
           body,
           {
             headers: {

@@ -8,18 +8,9 @@ RUN yarn install --frozen-lockfile
 
 # Rebuild the source code only when needed
 FROM node:alpine AS frontend-builder
+ENV NODE_ENV production
 WORKDIR /app
 COPY ./frontend/ .
-# Build vars
-ARG NEXT_PUBLIC_API_BASE="http://localhost:3000"
-ARG NEXT_PUBLIC_GITHUB="marnixah"
-ARG NEXT_PUBLIC_NAME="Marnix Hage"
-ARG NEXT_PUBLIC_EMAIL="business@marnixah.com"
-ENV NEXT_PUBLIC_API_BASE ${NEXT_PUBLIC_API_BASE}
-ENV NEXT_PUBLIC_GITHUB ${NEXT_PUBLIC_GITHUB}
-ENV NEXT_PUBLIC_NAME ${NEXT_PUBLIC_NAME}
-ENV NEXT_PUBLIC_EMAIL ${NEXT_PUBLIC_EMAIL}
-
 COPY --from=frontend-deps /app/node_modules ./node_modules
 RUN yarn build && yarn install --production --ignore-scripts --prefer-offline
 # Creates /app/out folder with static html

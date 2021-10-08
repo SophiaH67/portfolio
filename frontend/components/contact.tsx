@@ -1,5 +1,6 @@
 import axios, { AxiosError } from 'axios'
 import { FormEvent, useState } from 'react'
+import { getBackendBase } from '../lib/api'
 import Button from './button'
 import FloatingCard from './floatingCard'
 import Input from './input'
@@ -24,7 +25,7 @@ export default function Contact() {
     axios.defaults.headers = { accept: 'application/json' }
 
     axios
-      .post('http://127.0.0.1:8000/api/messages', body, {
+      .post(`${getBackendBase()}/api/messages`, body, {
         headers: {
           'Content-Type': 'application/json',
         },
