@@ -14,7 +14,7 @@ interface Props extends Message {
 
 export default function MessageCard({ created_at, className, id, ip, email, name, message, onDelete }: Props) {
   return (
-    <div className={'w-full md:w-96 md:max-w-xl bg-white shadow-xl rounded-lg ' + className||''}>
+    <div className={'w-full h-full md:w-96 md:max-w-xl bg-white shadow-xl rounded-lg ' + className||''}>
       <div className='pt-6 px-3 pb-4'>
         <h2 className='text-4xl text-gray-800'>{name}</h2>
         <h3 className='text-gray-600'>{dayjs().to(dayjs(created_at))}</h3>
