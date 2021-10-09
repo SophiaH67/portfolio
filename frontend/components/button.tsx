@@ -3,7 +3,7 @@ interface Props {
   onClick?: () => void
   className?: string
   disabled?: boolean
-  children?: string
+  children?: string | JSX.Element
   type?: "button" | "submit" | "reset"
 }
 export default function Button({
