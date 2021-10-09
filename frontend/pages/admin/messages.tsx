@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import Loading from '../../components/loading'
 import MessageCard from '../../components/messageCard'
 import Section from '../../components/section'
 import Message from '../../interfaces/message'
@@ -16,26 +17,30 @@ export default function Messages() {
   return (
     <Section>
       <div className='flex w-full flex-wrap justify-center max-w-10xl'>
-        {messages.map((message) => (
-          <MessageCard
-            className='mx-4 my-2'
-            onDelete={() =>
-              setMessages((prevState) =>
-                prevState.filter(
-                  (filterMessage) => filterMessage.id !== message.id
+        {messages.length === 0 ? (
+          <div className="pt-6"><Loading size="70px" /></div>
+        ) : (
+          messages.map((message) => (
+            <MessageCard
+              className='mx-4 my-2'
+              onDelete={() =>
+                setMessages((prevState) =>
+                  prevState.filter(
+                    (filterMessage) => filterMessage.id !== message.id
+                  )
                 )
-              )
-            }
-            key={message.id}
-            updated_at={message.updated_at}
-            created_at={message.created_at}
-            message={message.message}
-            email={message.email}
-            name={message.name}
-            id={message.id}
-            ip={message.ip}
-          />
-        ))}
+              }
+              key={message.id}
+              updated_at={message.updated_at}
+              created_at={message.created_at}
+              message={message.message}
+              email={message.email}
+              name={message.name}
+              id={message.id}
+              ip={message.ip}
+            />
+          ))
+        )}
       </div>
     </Section>
   )
