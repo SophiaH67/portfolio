@@ -37,7 +37,7 @@ export default function MessageCard({ created_at, className, id, ip, email, name
             </span>
           </div>
         </div>
-        <h2 className="text-center text-3xl text-gray-800">{email}</h2>
+        <h2 className="text-center text-3xl text-gray-800 overflow-hidden">{email}</h2>
       </div>
     </div>
   )
