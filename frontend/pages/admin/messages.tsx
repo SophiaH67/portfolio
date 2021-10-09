@@ -27,6 +27,8 @@ export default function Messages() {
               )
             }
             key={message.id}
+            updated_at={message.updated_at}
+            created_at={message.created_at}
             message={message.message}
             email={message.email}
             name={message.name}
