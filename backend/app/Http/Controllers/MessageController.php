@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Validator;
 class MessageController extends Controller
 {
     public function index() {
-        return Message::all()->sortBy('created_at');
+        return Message::all()->sortBy('created_at')->reverse()->values();
     }
 
     public function store(Request $request) {
