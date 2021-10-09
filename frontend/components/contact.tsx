@@ -4,6 +4,7 @@ import { getBackendBase } from '../lib/api'
 import Button from './button'
 import FloatingCard from './floatingCard'
 import Input from './input'
+import Loading from './loading'
 
 export default function Contact() {
   const [name, setName] = useState('')
@@ -13,8 +14,11 @@ export default function Contact() {
   const [fetchErrors, setFetchErrors] = useState([] as string[])
   const [successMessage, setSuccessMessage] = useState('')
 
+  const [submitting, setSubmitting] = useState(false)
+
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    setSubmitting(true)
     const body = {
       name: name,
       email: email,
@@ -43,6 +47,7 @@ export default function Contact() {
         setFetchErrors(errors)
         setSuccessMessage('')
       })
+      .finally(() => setSubmitting(false))
   }
   return (
     <FloatingCard>
@@ -88,8 +93,8 @@ export default function Contact() {
               {successMessage}
             </label>
           ) : null}
-          <Button className='w-full' type='submit'>
-            Stuur
+          <Button className='w-full' type='submit' disabled={submitting}>
+            {submitting ? <Loading /> : 'Stuur'}
           </Button>
         </form>
       </>
