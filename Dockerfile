@@ -36,6 +36,8 @@ FROM webdevops/php-apache:8.0-alpine AS laravel-runner
 WORKDIR /app
 COPY --from=laravel-composer-builder /app/ /app/
 COPY --from=frontend-builder /app/out/ /app/public/
+RUN mkdir resources/views/errors
+COPY --from=frontend-builder /app/out/404.html /app/resources/views/errors/404.blade.php
 RUN chmod 0777 -R /app/storage/
 ENV WEB_DOCUMENT_ROOT /app/public/
 # This is stupid, I know this stupid, but I have to do this
