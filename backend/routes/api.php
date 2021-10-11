@@ -19,3 +19,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 use App\Http\Controllers\MessageController;
 Route::apiResource('messages', MessageController::class);
+
+use App\Http\Controllers\ProjectController;
+Route::apiResource('projects', ProjectController::class);
