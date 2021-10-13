@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import React, { CSSProperties, useEffect, useState } from 'react'
 import ProjectInterface from '../interfaces/project'
 import { getProjects } from '../lib/api'
 import ProjectCard from './projectCard'
@@ -7,7 +7,8 @@ export default function Projects() {
   const [projects, setProjects] = useState<ProjectInterface[]>([])
 
   useEffect(() => {
-    getProjects().then(setProjects)
+    getProjects()
+      .then(setProjects)
       .then(() => console.log(projects))
   }, [])
 
@@ -16,20 +17,22 @@ export default function Projects() {
       <h2 className='pt-24 pb-12 text-gray-100 font-semibold mx-auto max-w-min text-6xl'>
         Projects
       </h2>
-      <div className="flex justify-center">
-      <div className='flex w-full flex-wrap justify-center max-w-7xl'>
-        {projects.map((project) => (
-          <a href={project.link} target="_blank" key={project.id}>
-            <ProjectCard 
-              id={project.id}
-              name={project.name}
-              className='mx-4 my-2'
-              description={project.description}
-              link={project.link}
-            />
-           </a>
-        ))}
-      </div>
+      <div className='w-full mx-auto'>
+        <div
+          className='flex flex-wrap justify-center'
+        >
+          {projects.map((project) => (
+            <a href={project.link} target='_blank' key={project.id}>
+              <ProjectCard
+                id={project.id}
+                className='my-2 mx-4'
+                name={project.name}
+                description={project.description}
+                link={project.link}
+              />
+            </a>
+          ))}
+        </div>
       </div>
     </div>
   )
