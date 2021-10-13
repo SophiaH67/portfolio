@@ -29,7 +29,7 @@ export default function Projects() {
           className='flex flex-wrap justify-center'
         >
           {projects.map((project) => (
-            <a href={project.link} target='_blank' key={project.id}>
+            <a href={project.link} target='_blank' rel="noreferrer" key={project.id}>
               <ProjectCard
                 id={project.id}
                 className='my-2 mx-4'
