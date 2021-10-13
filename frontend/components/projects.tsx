@@ -18,15 +18,16 @@ export default function Projects() {
       </h2>
       <div className="flex justify-center">
       <div className='flex w-full flex-wrap justify-center max-w-7xl'>
-        {projects.map((project, i) => (
-          <ProjectCard 
-            key={i}
-            id={project.id}
-            name={project.name}
-            className='mx-4 my-2'
-            description={project.description}
-            link={project.link}
-           />
+        {projects.map((project) => (
+          <a href={project.link} target="_blank" key={project.id}>
+            <ProjectCard 
+              id={project.id}
+              name={project.name}
+              className='mx-4 my-2'
+              description={project.description}
+              link={project.link}
+            />
+           </a>
         ))}
       </div>
       </div>
