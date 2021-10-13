@@ -45,12 +45,16 @@ export default function ProjectCard({
           <h2 className='text-4xl text-gray-800 w-full'>{name}</h2>
         )}
         {editing ? (
-          <input
-            className='text-black w-full'
+          <textarea
+            className='text-black w-full resize-none h-full outline-none'
             value={description}
-            onInput={(e) =>
-              setDescription((e.target as HTMLInputElement).value)
-            }
+            onInput={(e) => {
+              const targetElement = e.target as HTMLTextAreaElement
+              setDescription(targetElement.value)
+              const rows = Math.max(Math.max(targetElement.value.split('\n').length, targetElement.value.split('\r').length),2)
+              console.log(rows)
+              targetElement.rows = rows
+            }}
           />
         ) : (
           <p className='text-black'>{description}</p>
