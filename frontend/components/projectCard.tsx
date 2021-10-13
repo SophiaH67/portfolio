@@ -83,7 +83,7 @@ export default function ProjectCard({
                     title='Delete'
                     onClick={() => {
                       deleteProject(id)
-                      if (onDelete) onDelete()
+                      onDelete()
                     }}
                   >
                     <FontAwesomeIcon className='text-red-500' icon={faBan} />
