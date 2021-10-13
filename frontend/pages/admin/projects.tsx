@@ -1,6 +1,7 @@
 import axios, { AxiosError } from 'axios'
 import React, { useEffect, useState } from 'react'
 import FloatingCard from '../../components/floatingCard'
+import Loading from '../../components/loading'
 import ProjectCard from '../../components/projectCard'
 import Section from '../../components/section'
 import ProjectInterface from '../../interfaces/project'
@@ -8,17 +9,22 @@ import { createProject, deleteProject, getBackendBase, getProjects, updateProjec
 
 export default function Projects() {
   const [update, setUpdate] = useState(Math.random())
+  const [fetching, setFetching] = useState(true)
 
   const [projects, setProjects] = useState<ProjectInterface[]>([])
   const [editing, setEditing] = useState([] as boolean[])
 
   useEffect(() => {
     getProjects().then(setProjects)
-      .then(() => console.log(projects))
+      .then(() => setFetching(false))
   }, [update])
 
   return (
     <Section>
+      {fetching ?
+        <div className="flex justify-center">
+          <Loading size="70px" />
+        </div> :
         <div className='flex justify-center'>
           <div className='flex w-full flex-wrap justify-center max-w-7xl'>
             {projects.map((project, i) => (
@@ -74,7 +80,7 @@ export default function Projects() {
                 editing={true}
               />
           </div>
-        </div>
+        </div>}
     </Section>
   )
 }
