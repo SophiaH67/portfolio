@@ -4,7 +4,7 @@ import Loading from '../../components/loading'
 import ProjectCard from '../../components/projectCard'
 import Section from '../../components/section'
 import ProjectInterface from '../../interfaces/project'
-import { createProject, deleteProject, getProjects, updateProject } from '../../lib/api'
+import { createProject, getProjects, updateProject } from '../../lib/api'
 
 export default function Projects() {
   const [update, setUpdate] = useState(Math.random())
