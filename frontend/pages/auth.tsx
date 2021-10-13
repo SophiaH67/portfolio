@@ -1,7 +1,10 @@
-import React from "react"
+import React from 'react'
 import Auth from '../components/auth'
 
 export default function Home() {
-  return <div>
-    <Auth></Auth></div>
+  return (
+    <div>
+      <Auth></Auth>
+    </div>
+  )
 }

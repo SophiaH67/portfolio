@@ -1,9 +1,9 @@
 import Head from 'next/head'
-import CurriculumVitae from '../components/curriculumVitae';
+import CurriculumVitae from '../components/curriculumVitae'
 import Name from '../components/name'
 import Projects from '../components/projects'
 import Contact from '../components/contact'
-import Section from '../components/section';
+import Section from '../components/section'
 
 export default function Home() {
   return (

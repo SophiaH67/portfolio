@@ -5,12 +5,12 @@ interface Props {
   description: string
 }
 
-export default function Input({state, type, placeholder, description} : Props) {
+export default function Input({ state, type, placeholder, description }: Props) {
   const [value, setValue] = state
 
   return (
     <div>
-      <label className="font-light text-gray-500 text-xs">{description}</label>
+      <label className='font-light text-gray-500 text-xs'>{description}</label>
       <input
         onInput={(e) => {
           const element = e.target as HTMLInputElement
