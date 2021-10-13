@@ -55,7 +55,14 @@ export default function ProjectCard({
             }}
           />
         ) : (
-          <p className='text-black'>{description}</p>
+          <p className='text-black'>
+            {description.split('\n').map((line, i) => (
+              <span key={i}>
+                {line}
+                <br />
+              </span>
+            ))}
+          </p>
         )}
       </div>
       {onEdit && onSave ? (
