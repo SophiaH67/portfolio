@@ -7,17 +7,19 @@ import { getBackendBase } from '../../lib/api'
 
 export default function Messages() {
   const [messages, setMessages] = useState([] as Message[])
+  const [fetching, setFetching] = useState(true)
 
   useEffect(() => {
     fetch(`${getBackendBase()}/api/messages`)
       .then((res) => res.json())
       .then((incomingMessages: Message[]) => setMessages(incomingMessages))
+      .then(()=>setFetching(false))
   }, [])
 
   return (
     <Section>
       <div className='flex w-full flex-wrap justify-center max-w-10xl'>
-        {messages.length === 0 ? (
+        {fetching ? (
           <div className="pt-6"><Loading size="70px" /></div>
         ) : (
           messages.map((message) => (

@@ -1,15 +1,17 @@
 import React, { CSSProperties, useEffect, useState } from 'react'
 import ProjectInterface from '../interfaces/project'
 import { getProjects } from '../lib/api'
+import Loading from './loading'
 import ProjectCard from './projectCard'
 
 export default function Projects() {
   const [projects, setProjects] = useState<ProjectInterface[]>([])
+  const [fetching, setFetching] = useState(true)
 
   useEffect(() => {
     getProjects()
       .then(setProjects)
-      .then(() => console.log(projects))
+      .then(() => setFetching(false))
   }, [])
 
   return (
@@ -17,6 +19,11 @@ export default function Projects() {
       <h2 className='pt-24 pb-12 text-gray-100 font-semibold mx-auto max-w-min text-6xl'>
         Projects
       </h2>
+      {fetching ?
+      <div className="flex justify-center">
+        <Loading size="70px" />
+      </div>
+      : 
       <div className='w-full mx-auto'>
         <div
           className='flex flex-wrap justify-center'
@@ -33,7 +40,7 @@ export default function Projects() {
             </a>
           ))}
         </div>
-      </div>
+      </div>}
     </div>
   )
 }
