@@ -20,7 +20,7 @@ export const getProjects = (): Promise<ProjectInterface[]> =>
   )
 
 export const deleteProject = (id: number) =>
-  axios.delete(`${getBackendBase()}/api/messages/${id}`)
+  axios.delete(`${getBackendBase()}/api/projects/${id}`)
 
 export const createProject = (
   name: string,
