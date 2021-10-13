@@ -26,7 +26,6 @@ export default function Projects() {
             className='mx-4 my-2'
             description={project.description}
             link={project.link}
-            editing={true}
            />
         ))}
       </div>
