@@ -21,7 +21,7 @@ export default function Projects() {
   return (
     <Section>
       {fetching ?
-        <div className="flex justify-center">
+        <div className="flex justify-center w-full">
           <Loading size="70px" />
         </div> :
           <div className='flex w-full flex-wrap justify-center max-w-7xl'>
