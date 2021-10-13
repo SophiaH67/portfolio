@@ -30,7 +30,7 @@ export default function ProjectCard({
   return (
     <div
       className={
-        'w-full md:w-96 md:max-w-xl bg-white shadow-xl rounded-lg break-words ' +
+        'w-full md:w-96 md:max-w-xl bg-white shadow-xl rounded-lg break-words flex flex-col justify-between ' +
           className || ''
       }
     >
