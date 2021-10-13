@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useState } from 'react'
 import ProjectInterface from '../interfaces/project'
 import { deleteProject } from '../lib/api'
-import TextareaAutosize from 'react-textarea-autosize';
+import TextareaAutosize from 'react-textarea-autosize'
 
 interface Props extends ProjectInterface {
   editing?: boolean
