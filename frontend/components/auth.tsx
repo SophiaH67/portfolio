@@ -30,32 +30,30 @@ export default function Modal() {
     }
 
     axios.defaults.withCredentials = true
-    axios.defaults.headers = {accept: 'application/json'};
+    axios.defaults.headers = { accept: 'application/json' }
 
-    axios.get(`${getBackendBase()}/sanctum/csrf-cookie`).then(() =>{
-      axios
-        .post(
-          `${getBackendBase()}/${signUp ? 'register' : 'login'}`,
-          body,
-          {
+    axios
+      .get(`${getBackendBase()}/sanctum/csrf-cookie`)
+      .then(() => {
+        axios
+          .post(`${getBackendBase()}/${signUp ? 'register' : 'login'}`, body, {
             headers: {
               'Content-Type': 'application/json',
             },
-          }
-      )
-        .catch((err: AxiosError) => {
-          const jsonBody = JSON.parse(err.request.response)
-          console.log(jsonBody)
-          let errors: string[] = []
-          if (jsonBody.errors)
-            Object.entries(jsonBody.errors).forEach(
-              ([_key, value]: [any, any]) => errors.push(...value)
-            )
-          else errors.push(jsonBody.message)
-          setFetchErrors(errors)
-        })
-      }
-    ).catch(e=>console.log(e))
+          })
+          .catch((err: AxiosError) => {
+            const jsonBody = JSON.parse(err.request.response)
+            console.log(jsonBody)
+            let errors: string[] = []
+            if (jsonBody.errors)
+              Object.entries(jsonBody.errors).forEach(([_key, value]: [any, any]) =>
+                errors.push(...value)
+              )
+            else errors.push(jsonBody.message)
+            setFetchErrors(errors)
+          })
+      })
+      .catch((e) => console.log(e))
   }
   return (
     <div className='max-w-xl mx-auto bg-white border-gray-100 border-2 rounded-md pt-8 mt-24'>
@@ -70,12 +68,7 @@ export default function Modal() {
         </h3>
         <form onSubmit={onSubmit}>
           {signUp ? (
-            <Input
-              state={[name, setName]}
-              type='name'
-              placeholder='Foo Bar'
-              description='Name'
-            ></Input>
+            <Input state={[name, setName]} type='name' placeholder='Foo Bar' description='Name'></Input>
           ) : null}
           <Input
             state={[email, setEmail]}
@@ -118,10 +111,7 @@ export default function Modal() {
           </label>
           {fetchErrors.map((err, i) => (
             <>
-              <label
-                key={i}
-                className='text-red-600 text-bold text-sm font-light'
-              >
+              <label key={i} className='text-red-600 text-bold text-sm font-light'>
                 {err}
               </label>
               <br />
@@ -133,9 +123,7 @@ export default function Modal() {
             href='#'
             onClick={() => setSignup(!signUp)}
           >
-            {signUp
-              ? 'Existing user? Get in here!'
-              : 'New here? Sign up instead!'}
+            {signUp ? 'Existing user? Get in here!' : 'New here? Sign up instead!'}
           </a>
           <Button className='w-full' type='submit'>
             {signUp ? 'Sign Up' : 'Sign In'}

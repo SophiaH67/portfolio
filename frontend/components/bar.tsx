@@ -9,9 +9,11 @@ export default function Bar() {
       <header className='bg-white shadow border-t-4 border-purple-700'>
         <div className='container mx-auto px-6 py-4'>
           <div className='flex items-center justify-between'>
-            <div className='text-black'><Link href="/">Marnix</Link></div>
-            <div className="flex flex-row-reverse">
-              <div className="mx-4">
+            <div className='text-black'>
+              <Link href='/'>Marnix</Link>
+            </div>
+            <div className='flex flex-row-reverse'>
+              <div className='mx-4'>
                 <a href={`https://github.com/marnixah`}>
                   <FontAwesomeIcon icon={faGithub}></FontAwesomeIcon>
                 </a>

@@ -51,7 +51,13 @@ export default function ProjectCard({
             onInput={(e) => {
               const targetElement = e.target as HTMLTextAreaElement
               setDescription(targetElement.value)
-              const rows = Math.max(Math.max(targetElement.value.split('\n').length, targetElement.value.split('\r').length),2)
+              const rows = Math.max(
+                Math.max(
+                  targetElement.value.split('\n').length,
+                  targetElement.value.split('\r').length
+                ),
+                2
+              )
               console.log(rows)
               targetElement.rows = rows
             }}
@@ -60,16 +66,14 @@ export default function ProjectCard({
           <p className='text-black'>{description}</p>
         )}
       </div>
-      {onEdit && onSave ?
-      <div className='bg-gray-200 flex-col py-2 px-3'>
-        <div className='flex justify-center'>
-          {/* Check for both so TS knows they are defined */}
+      {onEdit && onSave ? (
+        <div className='bg-gray-200 flex-col py-2 px-3'>
+          <div className='flex justify-center'>
+            {/* Check for both so TS knows they are defined */}
             <div className='flex justify-around -mt-4 px-3 w-full'>
               <span className='inline-block ring-4 ring-gray-200 rounded-full text-sm px-3 pt-0.5 bg-gray-200'>
                 <label className='text-gray-800'>
-                  <button
-                    onClick={() => editing ? onSave(name, description, link) : onEdit()}
-                  >
+                  <button onClick={() => (editing ? onSave(name, description, link) : onEdit())}>
                     <FontAwesomeIcon
                       className='text-purple-700'
                       icon={editing ? faSave : faPencilAlt}
@@ -91,19 +95,18 @@ export default function ProjectCard({
                 </span>
               ) : null}
             </div>
+          </div>
+          {editing ? (
+            <input
+              className='text-center w-full text-3xl bg-gray-200 text-gray-800'
+              value={link}
+              onInput={(e) => setLink((e.target as HTMLInputElement).value)}
+            />
+          ) : (
+            <h2 className='text-center text-3xl text-gray-800 overflow-hidden'>{link}</h2>
+          )}
         </div>
-        {editing ? (
-          <input
-            className='text-center w-full text-3xl bg-gray-200 text-gray-800'
-            value={link}
-            onInput={(e) => setLink((e.target as HTMLInputElement).value)}
-          />
-        ) : (
-          <h2 className='text-center text-3xl text-gray-800 overflow-hidden'>
-            {link}
-          </h2>
-        )}
-      </div> : null }
+      ) : null}
     </div>
   )
 }
