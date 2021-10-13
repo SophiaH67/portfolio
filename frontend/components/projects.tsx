@@ -1,20 +1,14 @@
 import { useEffect, useState } from 'react'
 import ProjectInterface from '../interfaces/project'
-import Project from './project'
+import { getProjects } from '../lib/api'
+import ProjectCard from './projectCard'
 
 export default function Projects() {
   const [projects, setProjects] = useState<ProjectInterface[]>([])
 
   useEffect(() => {
-    let tmpProjects = []
-    for (let i = 0; i < 10; i++) {
-      tmpProjects.push({
-        title: 'Big Project',
-        description: 'This really was a lot of work I swear',
-        image: 'https://picsum.photos/300/200',
-      })
-    }
-    setProjects(tmpProjects)
+    getProjects().then(setProjects)
+      .then(() => console.log(projects))
   }, [])
 
   return (
@@ -25,7 +19,15 @@ export default function Projects() {
       <div className="flex justify-center">
       <div className='flex w-full flex-wrap justify-center max-w-7xl'>
         {projects.map((project, i) => (
-          <Project key={i} project={project} />
+          <ProjectCard 
+            key={i}
+            id={project.id}
+            name={project.name}
+            className='mx-4 my-2'
+            description={project.description}
+            link={project.link}
+            editing={true}
+           />
         ))}
       </div>
       </div>
