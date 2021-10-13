@@ -13,23 +13,23 @@ export default function Messages() {
     fetch(`${getBackendBase()}/api/messages`)
       .then((res) => res.json())
       .then((incomingMessages: Message[]) => setMessages(incomingMessages))
-      .then(()=>setFetching(false))
+      .then(() => setFetching(false))
   }, [])
 
   return (
     <Section>
       <div className='flex w-full flex-wrap justify-center max-w-10xl'>
         {fetching ? (
-          <div className="pt-6"><Loading size="70px" /></div>
+          <div className='pt-6'>
+            <Loading size='70px' />
+          </div>
         ) : (
           messages.map((message) => (
             <MessageCard
               className='mx-4 my-2'
               onDelete={() =>
                 setMessages((prevState) =>
-                  prevState.filter(
-                    (filterMessage) => filterMessage.id !== message.id
-                  )
+                  prevState.filter((filterMessage) => filterMessage.id !== message.id)
                 )
               }
               key={message.id}

@@ -12,9 +12,22 @@ interface Props extends Message {
   onDelete: () => void
 }
 
-export default function MessageCard({ created_at, className, id, ip, email, name, message, onDelete }: Props) {
+export default function MessageCard({
+  created_at,
+  className,
+  id,
+  ip,
+  email,
+  name,
+  message,
+  onDelete,
+}: Props) {
   return (
-    <div className={'w-full h-full md:w-96 md:max-w-xl bg-white shadow-xl rounded-lg break-words ' + className||''}>
+    <div
+      className={
+        'w-full h-full md:w-96 md:max-w-xl bg-white shadow-xl rounded-lg break-words ' + className || ''
+      }
+    >
       <div className='pt-6 px-3 pb-4'>
         <h2 className='text-4xl text-gray-800'>{name}</h2>
         <h3 className='text-gray-600'>{dayjs().to(dayjs(created_at))}</h3>
@@ -27,17 +40,19 @@ export default function MessageCard({ created_at, className, id, ip, email, name
               <label className='text-gray-800'>{ip}</label>
             </span>
             <span className='inline-block ring-4 ring-gray-200 rounded-full text-sm px-3 pt-0.5 bg-gray-200'>
-              <button title='Delete' onClick={()=>{
-                deleteMessage(id)
-                onDelete()
-              }
-              }>
+              <button
+                title='Delete'
+                onClick={() => {
+                  deleteMessage(id)
+                  onDelete()
+                }}
+              >
                 <FontAwesomeIcon className='text-red-500' icon={faBan} />
               </button>
             </span>
           </div>
         </div>
-        <h2 className="text-center text-3xl text-gray-800 overflow-hidden">{email}</h2>
+        <h2 className='text-center text-3xl text-gray-800 overflow-hidden'>{email}</h2>
       </div>
     </div>
   )

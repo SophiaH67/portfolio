@@ -41,9 +41,7 @@ export default function Contact() {
       .catch((err: AxiosError) => {
         const jsonBody = JSON.parse(err.request.response)
         let errors: string[] = []
-        Object.entries(jsonBody).forEach(([_key, value]: [any, any]) =>
-          errors.push(...value)
-        )
+        Object.entries(jsonBody).forEach(([_key, value]: [any, any]) => errors.push(...value))
         setFetchErrors(errors)
         setSuccessMessage('')
       })
@@ -52,46 +50,28 @@ export default function Contact() {
   return (
     <FloatingCard>
       <>
-        <h2 className='text-gray-800 font-semibold text-6xl text-center'>
-          Contact
-        </h2>
+        <h2 className='text-gray-800 font-semibold text-6xl text-center'>Contact</h2>
         <p className='text-center text-sm text-gray-800'>
           Als je contact wilt opnemen met mij, kan dat hier!
         </p>
 
         <form onSubmit={onSubmit}>
-          <Input
-            description='Naam'
-            placeholder='N.A. am'
-            state={[name, setName]}
-            type='name'
-          />
+          <Input description='Naam' placeholder='N.A. am' state={[name, setName]} type='name' />
           <Input
             description='Email'
             placeholder='email@example.com'
             state={[email, setEmail]}
             type='email'
           />
-          <Input
-            description='Bericht'
-            placeholder=''
-            state={[message, setMessage]}
-            type='text'
-          />
+          <Input description='Bericht' placeholder='' state={[message, setMessage]} type='text' />
           {fetchErrors.map((fetchError, i) => (
             <div key={i}>
-              <label
-                className='text-red-600 text-bold text-sm font-light'
-              >
-                {fetchError}
-              </label>
+              <label className='text-red-600 text-bold text-sm font-light'>{fetchError}</label>
               <br />
             </div>
           ))}
           {successMessage ? (
-            <label className='text-green-600 text-bold text-sm font-light'>
-              {successMessage}
-            </label>
+            <label className='text-green-600 text-bold text-sm font-light'>{successMessage}</label>
           ) : null}
           <Button className='w-full' type='submit' disabled={submitting}>
             {submitting ? <Loading /> : 'Stuur'}
