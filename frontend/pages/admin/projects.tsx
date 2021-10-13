@@ -1,11 +1,10 @@
-import axios, { AxiosError } from 'axios'
+import { AxiosError } from 'axios'
 import React, { useEffect, useState } from 'react'
-import FloatingCard from '../../components/floatingCard'
 import Loading from '../../components/loading'
 import ProjectCard from '../../components/projectCard'
 import Section from '../../components/section'
 import ProjectInterface from '../../interfaces/project'
-import { createProject, deleteProject, getBackendBase, getProjects, updateProject } from '../../lib/api'
+import { createProject, deleteProject, getProjects, updateProject } from '../../lib/api'
 
 export default function Projects() {
   const [update, setUpdate] = useState(Math.random())
