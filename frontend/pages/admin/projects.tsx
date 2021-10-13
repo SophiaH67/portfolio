@@ -47,7 +47,7 @@ export default function Projects() {
                 }}
                 onDelete={() => {
                   let items = [...projects]
-                  items.slice(i,1)
+                  items.splice(i,1)
                   setProjects(items)
                   deleteProject(project.id)
                 }}
