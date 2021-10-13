@@ -49,7 +49,6 @@ export default function Projects() {
                   let items = [...projects]
                   items.splice(i,1)
                   setProjects(items)
-                  deleteProject(project.id)
                 }}
                 editing={!!editing[project.id]}
               />
