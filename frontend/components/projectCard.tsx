@@ -56,10 +56,10 @@ export default function ProjectCard({
           <p className='text-black'>{description}</p>
         )}
       </div>
+      {onEdit && onSave ?
       <div className='bg-gray-200 flex-col py-2 px-3'>
         <div className='flex justify-center'>
           {/* Check for both so TS knows they are defined */}
-          {onEdit && onSave ? (
             <div className='flex justify-around -mt-4 px-3 w-full'>
               <span className='inline-block ring-4 ring-gray-200 rounded-full text-sm px-3 pt-0.5 bg-gray-200'>
                 <label className='text-gray-800'>
@@ -87,7 +87,6 @@ export default function ProjectCard({
                 </span>
               ) : null}
             </div>
-          ) : null}
         </div>
         {editing ? (
           <input
@@ -100,7 +99,7 @@ export default function ProjectCard({
             {link}
           </h2>
         )}
-      </div>
+      </div> : null }
     </div>
   )
 }
