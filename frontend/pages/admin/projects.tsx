@@ -24,7 +24,6 @@ export default function Projects() {
         <div className="flex justify-center">
           <Loading size="70px" />
         </div> :
-        <div className='flex justify-center'>
           <div className='flex w-full flex-wrap justify-center max-w-7xl'>
             {projects.map((project, i) => (
               <ProjectCard
@@ -78,7 +77,6 @@ export default function Projects() {
                 onEdit={() => {}}
                 editing={true}
               />
-          </div>
         </div>}
     </Section>
   )
