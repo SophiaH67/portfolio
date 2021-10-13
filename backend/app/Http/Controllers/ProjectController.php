@@ -32,6 +32,28 @@ class ProjectController extends Controller
 
     }
 
+    public function update(Request $request, $id)
+    {
+        $reqBody = $request->all();
+        $validator = Validator::make($reqBody, [
+            'name' => ['required', 'max:200'],
+            'description' => ['required', 'max:3000', 'min:20'],
+            'link' => ['required', 'url', 'max:200' ],
+        ]);
+
+        if ($validator->fails()) {return response($validator->errors()->toJson(), 422);}
+
+        $project = Project::where('id', '=', $id)->first();
+
+        $project->name = $reqBody["name"];
+        $project->description = $reqBody["description"];
+        $project->link = $reqBody["link"];
+
+        $project->save();
+
+        return $project;
+    }
+
     public function destroy($id) {
         $project = Project::findOrFail($id);
 
