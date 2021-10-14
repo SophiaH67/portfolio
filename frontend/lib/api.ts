@@ -1,10 +1,14 @@
 import axios from 'axios'
 import ProjectInterface from '../interfaces/project'
 
-export const getBackendBase = () =>
-  process.env.NODE_ENV == 'production'
-    ? window.location.href.split('/').slice(0, 3).join('/')
-    : 'http://localhost:8000'
+export const getBackendBase = () => {
+  // SSR / SSG
+  if (typeof window === 'undefined') return 'https://marnixah.com'
+  // Fetch on client in production
+  if (process.env.NODE_ENV == 'production') return window.location.href.split('/').slice(0, 3).join('/')
+  // Fetch on client in development
+  else return 'http://localhost:8000'
+}
 
 export const deleteMessage = (id: number) => axios.delete(`${getBackendBase()}/api/messages/${id}`)
 
