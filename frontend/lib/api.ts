@@ -3,7 +3,7 @@ import ProjectInterface from '../interfaces/project'
 
 export const getBackendBase = () => {
   // SSR / SSG
-  if (typeof window === 'undefined') return 'https://marnixah.com'
+  if (typeof window === 'undefined') return 'https://www.marnixah.com'
   // Fetch on client in production
   if (process.env.NODE_ENV == 'production') return window.location.href.split('/').slice(0, 3).join('/')
   // Fetch on client in development
