@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import ProjectInterface from '../interfaces/project'
 import { getProjects } from '../lib/api'
-import Loading from './loading'
 import ProjectCard from './projectCard'
 
 export interface ProjectsProps {
