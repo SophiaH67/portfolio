@@ -37,8 +37,8 @@ export default function ProjectCard({
     >
       <div className='pt-6 px-3 pb-4'>
         {editing ? (
-          <input
-            className='text-4xl text-gray-800 w-full'
+          <TextareaAutosize
+            className='text-4xl text-gray-800 w-full outline-none resize-none'
             value={name}
             onInput={(e) => setName((e.target as HTMLInputElement).value)}
           />
