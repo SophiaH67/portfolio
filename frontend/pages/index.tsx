@@ -8,10 +8,19 @@ import { GetStaticPropsResult } from 'next'
 import { getProjects } from '../lib/api'
 import fs from 'fs'
 import path from 'path'
+import { useEffect, useState } from 'react'
+import { isNL } from '../lib/locale'
 
 interface Props extends ProjectsProps, CurriculumVitaeProps {} 
 
-export default function Home({ initialProjects, aboutme }: Props) {
+export default function Home({ initialProjects, aboutme: initialAboutme }: Props) {
+  const [aboutme, setAboutme] = useState(initialAboutme)
+  useEffect(() => {
+    if (!isNL()) return
+    fetch('/aboutme.nl.txt')
+      .then(res => res.text())
+      .then(setAboutme)
+  }, [])
   return (
     <div>
       <Head>
@@ -34,7 +43,7 @@ export async function getStaticProps(): Promise<GetStaticPropsResult<Props>> {
   return {
     props: {
       initialProjects: await getProjects(),
-      aboutme: fs.readFileSync(path.join(process.cwd(), 'public/aboutme.txt')).toString('utf-8')
+      aboutme: fs.readFileSync(path.join(process.cwd(), 'public/aboutme.en.txt')).toString('utf-8')
     },
   }
 }
