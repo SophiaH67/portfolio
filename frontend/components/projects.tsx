@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import ProjectInterface from '../interfaces/project'
 import { getProjects } from '../lib/api'
+import { isNL } from '../lib/locale'
 import ProjectCard from './projectCard'
 
 export interface ProjectsProps {
