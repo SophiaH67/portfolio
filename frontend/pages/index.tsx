@@ -34,7 +34,7 @@ export async function getStaticProps(): Promise<GetStaticPropsResult<Props>> {
   return {
     props: {
       initialProjects: await getProjects(),
-      aboutme: fs.readFileSync(path.join(process.cwd(), 'static/aboutme.txt')).toString('utf-8')
+      aboutme: fs.readFileSync(path.join(process.cwd(), 'public/aboutme.txt')).toString('utf-8')
     },
   }
 }
