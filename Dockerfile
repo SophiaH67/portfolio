@@ -8,6 +8,7 @@ RUN yarn install --frozen-lockfile
 
 # Rebuild the source code only when needed
 FROM node:alpine AS frontend-builder
+ENV NODE_OPTIONS --openssl-legacy-provider
 ENV NODE_ENV production
 WORKDIR /app
 COPY ./frontend/ .
