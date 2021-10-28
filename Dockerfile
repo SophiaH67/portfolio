@@ -1,5 +1,5 @@
 # Install dependencies only when needed
-FROM node:alpine AS frontend-deps
+FROM node:16-alpine AS frontend-deps
 # Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
@@ -7,8 +7,7 @@ COPY ./frontend/package.json ./frontend/yarn.lock ./
 RUN yarn install --frozen-lockfile
 
 # Rebuild the source code only when needed
-FROM node:alpine AS frontend-builder
-ENV NODE_OPTIONS --openssl-legacy-provider
+FROM node:16-alpine AS frontend-builder
 ENV NODE_ENV production
 WORKDIR /app
 COPY ./frontend/ .
@@ -17,7 +16,7 @@ RUN yarn build && yarn install --production --ignore-scripts --prefer-offline
 # Creates /app/out folder with static html
 RUN npx next export
 
-FROM node:latest AS laravel-node-builder
+FROM node:16-alpine AS laravel-node-builder
 WORKDIR /app
 COPY ./backend/ .
 RUN npm install
