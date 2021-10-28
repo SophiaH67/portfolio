@@ -1,6 +1,6 @@
 import Button from './button'
 import FloatingCard from './floatingCard'
-
+import Image from 'next/image'
 export interface CurriculumVitaeProps {
   aboutme: string
 }
@@ -12,7 +12,7 @@ export default function CurriculumVitae({ aboutme }: CurriculumVitaeProps) {
       <>
         <h2 className='text-center min-w-min text-6xl font-semibold text-gray-800 pb-4'>About Me</h2>
         <div className='flex flex-col md:flex-row'>
-          <img className='w-full md:w-auto md:max-w-sm md:pr-2' src='https://picsum.photos/512/512' />
+          <Image className='w-full md:w-auto md:max-w-sm md:pr-2' src='https://picsum.photos/512/512' />
           <div className='p-1 md:p-0 md:flex md:flex-col md:justify-between'>
             <p className='max-w-sm'>
               {aboutme.split('\n').map((line,i) => (
