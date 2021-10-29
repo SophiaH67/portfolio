@@ -26,6 +26,7 @@ export default function Contact() {
     }
 
     axios.defaults.withCredentials = true
+    axios.defaults.headers = { accept: 'application/json' }
 
     axios
       .post(`${getBackendBase()}/api/messages`, body, {

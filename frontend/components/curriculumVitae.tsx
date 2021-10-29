@@ -1,5 +1,6 @@
 import Button from './button'
 import FloatingCard from './floatingCard'
+
 export interface CurriculumVitaeProps {
   aboutme: string
 }
