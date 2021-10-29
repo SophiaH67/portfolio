@@ -30,6 +30,13 @@ export default function ProjectCard({
   const [descriptionNL, setDescriptionNL] = useState(initialDescriptionNL)
   const [link, setLink] = useState(initialLink)
 
+  if (
+    typeof descriptionEN == "undefined" ||
+    typeof descriptionNL == "undefined" ||
+    typeof name == "undefined" ||
+    typeof link == "undefined"
+    ) return <></>
+
   return (
     <div
       className={
