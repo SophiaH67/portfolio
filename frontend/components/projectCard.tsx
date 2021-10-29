@@ -9,7 +9,7 @@ interface Props extends ProjectInterface {
   editing?: boolean
   onDelete?: () => void
   onEdit?: () => void
-  onSave?: (name: string, description: string, link: string) => void
+  onSave?: (name: string, descriptionEN: string, descriptionNL: string, link: string) => void
   className?: string
 }
 
@@ -17,7 +17,8 @@ export default function ProjectCard({
   className,
   id,
   name: initialName,
-  description: initialDescription,
+  descriptionEN: initialDescriptionEN,
+  descriptionNL: initialDescriptionNL,
   link: initialLink,
   editing,
   onDelete,
@@ -25,7 +26,8 @@ export default function ProjectCard({
   onSave,
 }: Props) {
   const [name, setName] = useState(initialName)
-  const [description, setDescription] = useState(initialDescription)
+  const [descriptionEN, setDescriptionEN] = useState(initialDescriptionEN)
+  const [descriptionNL, setDescriptionNL] = useState(initialDescriptionNL)
   const [link, setLink] = useState(initialLink)
 
   return (
@@ -38,7 +40,8 @@ export default function ProjectCard({
       <div className='pt-6 px-3 pb-4'>
         {editing ? (
           <TextareaAutosize
-            className='text-4xl text-gray-800 w-full outline-none resize-none'
+            className='text-4xl text-gray-800 w-full outline-none resize-none overflow-hidden'
+            placeholder={initialName}
             value={name}
             onInput={(e) => setName((e.target as HTMLInputElement).value)}
           />
@@ -46,17 +49,31 @@ export default function ProjectCard({
           <h2 className='text-4xl text-gray-800 w-full'>{name}</h2>
         )}
         {editing ? (
+          <>
+          <label className='font-light text-gray-500 text-xs'>English</label>
           <TextareaAutosize
             className='text-black w-full resize-none h-full outline-none'
-            value={description}
+            value={descriptionEN}
+            placeholder={initialDescriptionEN}
             onInput={(e) => {
               const targetElement = e.target as HTMLTextAreaElement
-              setDescription(targetElement.value)
+              setDescriptionEN(targetElement.value)
             }}
           />
+          <label className='font-light text-gray-500 text-xs'>Nederlands</label>
+          <TextareaAutosize
+            className='text-black w-full resize-none h-full outline-none'
+            value={descriptionNL}
+            placeholder={initialDescriptionNL}
+            onInput={(e) => {
+              const targetElement = e.target as HTMLTextAreaElement
+              setDescriptionNL(targetElement.value)
+            }}
+          />
+          </>
         ) : (
           <p className='text-black'>
-            {description.split('\n').map((line, i) => (
+            {descriptionEN.split('\n').map((line, i) => (
               <span key={i}>
                 {line}
                 <br />
@@ -65,14 +82,14 @@ export default function ProjectCard({
           </p>
         )}
       </div>
+      {/* Check for both so TS knows they are defined */}
       {onEdit && onSave ? (
         <div className='bg-gray-200 flex-col py-2 px-3'>
           <div className='flex justify-center'>
-            {/* Check for both so TS knows they are defined */}
             <div className='flex justify-around -mt-4 px-3 w-full'>
               <span className='inline-block ring-4 ring-gray-200 rounded-full text-sm px-3 pt-0.5 bg-gray-200'>
                 <label className='text-gray-800'>
-                  <button onClick={() => (editing ? onSave(name, description, link) : onEdit())}>
+                  <button onClick={() => (editing ? onSave(name, descriptionEN, descriptionNL, link) : onEdit())}>
                     <FontAwesomeIcon
                       className='text-purple-700'
                       icon={editing ? faSave : faPencilAlt}
