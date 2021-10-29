@@ -5,6 +5,7 @@ import Button from './button'
 import FloatingCard from './floatingCard'
 import Input from './input'
 import Loading from './loading'
+import TextareaAutosize from 'react-textarea-autosize'
 
 export default function Contact() {
   const [name, setName] = useState('')
@@ -63,7 +64,16 @@ export default function Contact() {
             state={[email, setEmail]}
             type='email'
           />
-          <Input description='Bericht' placeholder='' state={[message, setMessage]} type='text' />
+          <label className='font-light text-gray-500 text-xs'>Bericht</label>
+          <TextareaAutosize
+            placeholder=''
+            minRows={3}
+            className='min-w-full border-2 border-gray-300 rounded-md p-1 my-1 focus:outline-none outline-none resize-none overflow-hidden'
+            onInput={(e) => {
+              const element = e.target as HTMLInputElement
+              setMessage(element.value)
+            }}
+          />
           {fetchErrors.map((fetchError, i) => (
             <div key={i}>
               <label className='text-red-600 text-bold text-sm font-light'>{fetchError}</label>
