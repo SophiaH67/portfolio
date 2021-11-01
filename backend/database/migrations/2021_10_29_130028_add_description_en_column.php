@@ -15,7 +15,7 @@ class AdddescriptionENColumn extends Migration
     {
         Schema::table('projects', function($table) {
             $table->renameColumn('description', 'description_en');
-            $table->text('description_nl');
+            $table->text('description_nl')->default('Lange beschrijving over dit geweldige project...');
         });
     }
 
