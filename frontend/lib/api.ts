@@ -26,27 +26,27 @@ export const deleteProject = (id: number) => axios.delete(`${getBackendBase()}/a
 
 export const createProject = (
   name: string,
-  descriptionEN: string,
-  descriptionNL: string,
+  description_en: string,
+  description_nl: string,
   link: string
 ) =>
   axios.post(`${getBackendBase()}/api/projects`, {
     name: name,
-    descriptionEN: descriptionEN,
-    descriptionNL: descriptionNL,
+    description_en: description_en,
+    description_nl: description_nl,
     link: link,
   })
 
 export const updateProject = (
   id: number,
   name: string,
-  descriptionEN: string,
-  descriptionNL: string,
+  description_en: string,
+  description_nl: string,
   link: string
 ) =>
   axios.patch(`${getBackendBase()}/api/projects/${id}`, {
     name: name,
-    descriptionEN: descriptionEN,
-    descriptionNL: descriptionNL,
+    description_en: description_en,
+    description_nl: description_nl,
     link: link,
   })

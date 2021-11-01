@@ -29,13 +29,13 @@ export default function Projects({ initialProjects }: ProjectsProps) {
       <div className='w-full mx-auto'>
         <div className='flex flex-wrap justify-center'>
           {projects.map((project) => (
-            <a href={project.link} target='_blank' rel='noreferrer' key={project.name+project.link+project.descriptionNL+project.descriptionEN}>
+            <a href={project.link} target='_blank' rel='noreferrer' key={project.name+project.link+project.description_nl+project.description_en}>
               <ProjectCard
                 id={project.id}
                 className='my-2 mx-4'
                 name={project.name}
-                descriptionEN={project.descriptionEN}
-                descriptionNL={project.descriptionNL}
+                description_en={project.description_en}
+                description_nl={project.description_nl}
                 link={project.link}
               />
             </a>

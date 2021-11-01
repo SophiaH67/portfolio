@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddDescriptionEnColumn extends Migration
+class AdddescriptionENColumn extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,8 @@ class AddDescriptionEnColumn extends Migration
     public function up()
     {
         Schema::table('projects', function($table) {
-            $table->renameColumn('description', 'descriptionEN');
-            $table->text('descriptionNL');
+            $table->renameColumn('description', 'description_en');
+            $table->text('description_nl');
         });
     }
 
@@ -27,8 +27,8 @@ class AddDescriptionEnColumn extends Migration
     public function down()
     {
         Schema::table('projects', function($table) {
-            $table->renameColumn('descriptionEN', 'description');
-            $table->dropColumn('descriptionNL');
+            $table->renameColumn('description_en', 'description');
+            $table->dropColumn('description_nl');
         });
     }
 }

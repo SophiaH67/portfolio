@@ -1,7 +1,7 @@
 export default interface ProjectInterface {
   id: number
   name: string
-  descriptionEN: string
-  descriptionNL: string
+  description_en: string
+  description_nl: string
   link: string
 }
