@@ -49,8 +49,8 @@ class ProjectController extends Controller
         $project = Project::where('id', '=', $id)->first();
 
         $project->name = $reqBody["name"];
-        $project->description_en = $reqBody["description_nl"];
-        $project->description_N_L = $reqBody["description_en"];
+        $project->description_en = $reqBody["description_en"];
+        $project->description_nl = $reqBody["description_nl"];
         $project->link = $reqBody["link"];
 
         $project->save();
