@@ -28,7 +28,6 @@ export default function Contact() {
     }
 
     axios.defaults.withCredentials = true
-    axios.defaults.headers = { accept: 'application/json' }
 
     axios
       .post(`${getBackendBase()}/api/messages`, body, {
@@ -64,13 +63,12 @@ export default function Contact() {
           <Input description='Email' state={[email, setEmail]} type='email' />
           <label className='font-light text-gray-500 text-xs'>{isNL() ? 'Bericht' : 'Message'}</label>
           <TextareaAutosize
-            value={message}
-            className="min-w-full border-2 border-gray-300 rounded-md p-1 my-1 focus:outline-none resize-none"
             placeholder={isNL() ? 'Bericht' : 'Message'}
-            minRows={2}
+            minRows={3}
+            className='min-w-full border-2 border-gray-300 rounded-md p-1 my-1 focus:outline-none outline-none resize-none overflow-hidden'
             onInput={(e) => {
-              const targetElement = e.target as HTMLTextAreaElement
-              setMessage(targetElement.value)
+              const element = e.target as HTMLInputElement
+              setMessage(element.value)
             }}
           />
           {fetchErrors.map((fetchError, i) => (
