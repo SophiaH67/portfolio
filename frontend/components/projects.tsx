@@ -32,7 +32,7 @@ export default function Projects({ initialProjects }: ProjectsProps) {
             <a href={project.link} target='_blank' rel='noreferrer' key={project.name+project.link+project.description_nl+project.description_en}>
               <ProjectCard
                 id={project.id}
-                className='my-2 mx-4'
+                className='my-2 mx-0 md:mx-4 w-screen'
                 name={project.name}
                 description_en={project.description_en}
                 description_nl={project.description_nl}
