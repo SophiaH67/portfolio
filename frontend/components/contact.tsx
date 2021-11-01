@@ -58,14 +58,13 @@ export default function Contact() {
         </p>
 
         <form onSubmit={onSubmit}>
-          <Input description={isNL() ? 'Naam' : 'Name'} placeholder={isNL() ? 'naam' : 'name'} state={[name, setName]} type='name' />
+          <Input description={isNL() ? 'Naam' : 'Name'} state={[name, setName]} type='name' />
           <Input
             description='Email'
-            placeholder='email@example.com'
             state={[email, setEmail]}
             type='email'
           />
-          <Input description={isNL() ? 'Bericht' : 'Message'} placeholder={isNL() ? 'bericht' : 'message'} state={[message, setMessage]} type='text' />
+          <Input description={isNL() ? 'Bericht' : 'Message'} state={[message, setMessage]} type='text' />
           {fetchErrors.map((fetchError, i) => (
             <div key={i}>
               <label className='text-red-600 text-bold text-sm font-light'>{fetchError}</label>
