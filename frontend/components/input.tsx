@@ -1,7 +1,7 @@
 interface Props {
   state: [string, (value: string) => void]
   type?: string
-  placeholder: string
+  placeholder?: string
   description: string
 }
 
@@ -16,7 +16,7 @@ export default function Input({ state, type, placeholder, description }: Props) 
           const element = e.target as HTMLInputElement
           setValue(element.value)
         }}
-        placeholder={placeholder}
+        placeholder={placeholder || description}
         className='min-w-full border-2 border-gray-300 rounded-md p-1 my-1 focus:outline-none'
         type={type}
         value={value}

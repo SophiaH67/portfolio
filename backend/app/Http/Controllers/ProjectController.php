@@ -16,7 +16,8 @@ class ProjectController extends Controller
         $reqBody = $request->all();
         $validator = Validator::make($reqBody, [
             'name' => ['required', 'max:200', 'unique:projects'],
-            'description' => ['required', 'max:3000', 'min:20'],
+            'description_en' => ['required', 'max:3000', 'min:20'],
+            'description_nl' => ['required', 'max:3000', 'min:20'],
             'link' => ['required', 'url', 'max:200' ],
         ], ['name.unique' => 'A project with this name already exists']);
 
@@ -24,7 +25,8 @@ class ProjectController extends Controller
 
         $project = Project::create([
             "name" => $reqBody["name"],
-            "description" => $reqBody["description"],
+            "description_en" => $reqBody["description_en"],
+            "description_nl" => $reqBody["description_nl"],
             "link" => $reqBody["link"],
         ]);
 
@@ -37,7 +39,8 @@ class ProjectController extends Controller
         $reqBody = $request->all();
         $validator = Validator::make($reqBody, [
             'name' => ['required', 'max:200'],
-            'description' => ['required', 'max:3000', 'min:20'],
+            'description_en' => ['required', 'max:3000', 'min:20'],
+            'description_nl' => ['required', 'max:3000', 'min:20'],
             'link' => ['required', 'url', 'max:200' ],
         ]);
 
@@ -46,7 +49,8 @@ class ProjectController extends Controller
         $project = Project::where('id', '=', $id)->first();
 
         $project->name = $reqBody["name"];
-        $project->description = $reqBody["description"];
+        $project->description_en = $reqBody["description_nl"];
+        $project->description_N_L = $reqBody["description_en"];
         $project->link = $reqBody["link"];
 
         $project->save();

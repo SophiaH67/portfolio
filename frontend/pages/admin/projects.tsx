@@ -33,14 +33,15 @@ export default function Projects() {
               id={project.id}
               className='mx-4 my-2'
               name={project.name}
-              description={project.description}
+              description_en={project.description_en}
+              description_nl={project.description_nl}
               link={project.link}
-              onSave={(name, description, link) => {
+              onSave={(name, description_en, description_nl, link) => {
                 let items = [...editing]
                 items[project.id] = false
                 setEditing(items)
 
-                updateProject(project.id, name, description, link)
+                updateProject(project.id, name, description_en, description_nl, link)
               }}
               onEdit={() => {
                 let items = [...editing]
@@ -58,11 +59,12 @@ export default function Projects() {
           <ProjectCard
             id={-1}
             className='mx-4 my-2'
-            name='Name'
-            description='Description'
+            name='Project Name'
+            description_en='Description'
+            description_nl='Beschrijving'
             link='https://example.com'
-            onSave={(name, description, link) =>
-              createProject(name, description, link)
+            onSave={(name, description_en, description_nl, link) =>
+              createProject(name, description_en, description_nl, link)
                 .then(() => setUpdate(Math.random()))
                 .catch((err: AxiosError) => {
                   const jsonBody = JSON.parse(err.request.response)

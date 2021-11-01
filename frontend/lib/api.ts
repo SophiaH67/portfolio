@@ -24,16 +24,29 @@ export const getProjects = (): Promise<ProjectInterface[]> =>
 
 export const deleteProject = (id: number) => axios.delete(`${getBackendBase()}/api/projects/${id}`)
 
-export const createProject = (name: string, description: string, link: string) =>
+export const createProject = (
+  name: string,
+  description_en: string,
+  description_nl: string,
+  link: string
+) =>
   axios.post(`${getBackendBase()}/api/projects`, {
     name: name,
-    description: description,
+    description_en: description_en,
+    description_nl: description_nl,
     link: link,
   })
 
-export const updateProject = (id: number, name: string, description: string, link: string) =>
+export const updateProject = (
+  id: number,
+  name: string,
+  description_en: string,
+  description_nl: string,
+  link: string
+) =>
   axios.patch(`${getBackendBase()}/api/projects/${id}`, {
     name: name,
-    description: description,
+    description_en: description_en,
+    description_nl: description_nl,
     link: link,
   })
