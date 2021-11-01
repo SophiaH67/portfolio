@@ -1,11 +1,12 @@
 import axios, { AxiosError } from 'axios'
-import { FormEvent, useState } from 'react'
+import React, { FormEvent, useState } from 'react'
 import { getBackendBase } from '../lib/api'
 import { isNL } from '../lib/locale'
 import Button from './button'
 import FloatingCard from './floatingCard'
 import Input from './input'
 import Loading from './loading'
+import TextareaAutosize from 'react-textarea-autosize'
 
 export default function Contact() {
   const [name, setName] = useState('')
@@ -53,18 +54,25 @@ export default function Contact() {
       <>
         <h2 className='text-gray-800 font-semibold text-6xl text-center'>Contact</h2>
         <p className='text-center text-sm text-gray-800'>
-          {isNL() ? 'Als je contact wilt opnemen met mij, kan dat hier' :
-          'If you want to contact me, you can do sothrough this form'}
+          {isNL()
+            ? 'Als je contact wilt opnemen met mij, kan dat hier'
+            : 'If you want to contact me, you can do sothrough this form'}
         </p>
 
         <form onSubmit={onSubmit}>
           <Input description={isNL() ? 'Naam' : 'Name'} state={[name, setName]} type='name' />
-          <Input
-            description='Email'
-            state={[email, setEmail]}
-            type='email'
+          <Input description='Email' state={[email, setEmail]} type='email' />
+          <label className='font-light text-gray-500 text-xs'>{isNL() ? 'Bericht' : 'Message'}</label>
+          <TextareaAutosize
+            value={message}
+            className="min-w-full border-2 border-gray-300 rounded-md p-1 my-1 focus:outline-none resize-none"
+            placeholder={isNL() ? 'Bericht' : 'Message'}
+            minRows={2}
+            onInput={(e) => {
+              const targetElement = e.target as HTMLTextAreaElement
+              setMessage(targetElement.value)
+            }}
           />
-          <Input description={isNL() ? 'Bericht' : 'Message'} state={[message, setMessage]} type='text' />
           {fetchErrors.map((fetchError, i) => (
             <div key={i}>
               <label className='text-red-600 text-bold text-sm font-light'>{fetchError}</label>
