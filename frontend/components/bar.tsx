@@ -19,7 +19,7 @@ export default function Bar() {
                 </a>
               </div>
               <div>
-                <a href={`mailto:${process.env.NEXT_PUBLIC_EMAIL}`}>
+                <a href={`mailto:marnix@hagehoeve.com`}>
                   <FontAwesomeIcon icon={faEnvelope}></FontAwesomeIcon>
                 </a>
               </div>
