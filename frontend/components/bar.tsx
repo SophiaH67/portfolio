@@ -14,17 +14,17 @@ export default function Bar() {
             </div>
             <div className='flex flex-row-reverse'>
               <div className='mr-4'>
-                <a href={`https://github.com/marnixah`}>
+                <a href={`https://github.com/marnixah`} aria-label="Github">
                   <FontAwesomeIcon icon={faGithub}></FontAwesomeIcon>
                 </a>
               </div>
               <div className='mr-4'>
-                <a href='https://www.linkedin.com/in/marnix-hage/'>
+                <a href='https://www.linkedin.com/in/marnix-hage/' aria-label="Linkedin">
                   <FontAwesomeIcon icon={faLinkedin}></FontAwesomeIcon>
                 </a>
               </div>
               <div className='mr-4'>
-                <a href={`mailto:marnix@hagehoeve.com`}>
+                <a href={`mailto:marnix@hagehoeve.com`} aria-label="email" >
                   <FontAwesomeIcon icon={faEnvelope}></FontAwesomeIcon>
                 </a>
               </div>
