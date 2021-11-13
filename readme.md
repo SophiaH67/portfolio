@@ -1,15 +1,7 @@
-# Variables
-- NEXT_PUBLIC_GITHUB
-- NEXT_PUBLIC_NAME
-- NEXT_PUBLIC_EMAIL
-- NEXT_PUBLIC_API_BASE
+# Portfolio
 
-## Example docker build
-```bash
-docker build \
-  --build-arg NEXT_PUBLIC_GITHUB=marnixah \
-  --build-arg NEXT_PUBLIC_NAME="Marnix Hage" \
-  --build-arg NEXT_PUBLIC_EMAIL "business@marnixah.com" \
-  --build-arg NEXT_PUBLIC_API_BASE="http://your.domain.tld/api/" \
-  -t yourname/portfolio-frontend:latest
-```
+This is the source code to [my personal portfolio](https://www.marnixah.com/).
+
+## Stack
+
+This project uses PHP Laravel as a backend and Next.js for the frontend.
