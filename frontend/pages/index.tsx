@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import CurriculumVitae, { CurriculumVitaeProps } from '../components/curriculumVitae'
 import Name from '../components/name'
 import Projects, { ProjectsProps } from '../components/projects'
@@ -10,6 +9,7 @@ import fs from 'fs'
 import path from 'path'
 import { useEffect, useState } from 'react'
 import { isNL } from '../lib/locale'
+import { NextSeo } from 'next-seo';
 
 interface Props extends ProjectsProps, CurriculumVitaeProps {} 
 
@@ -22,9 +22,11 @@ export default function Home({ initialProjects, aboutme: initialAboutme }: Props
   }, [])
   return (
     <div>
-      <Head>
-        <title>Marnix Portfolio</title>
-      </Head>
+      <NextSeo
+        title="Marnix Hage's Portfolio"
+        description="Hi, I'm Marnix. I am a 16 year old software
+        developer currently studying at Landstede MBO"
+      />
       <Name />
       <Section>
         <Projects initialProjects={initialProjects} />
