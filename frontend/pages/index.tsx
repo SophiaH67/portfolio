@@ -16,8 +16,7 @@ interface Props extends ProjectsProps, CurriculumVitaeProps {}
 export default function Home({ initialProjects, aboutme: initialAboutme }: Props) {
   const [aboutme, setAboutme] = useState(initialAboutme)
   useEffect(() => {
-    if (!isNL()) return
-    fetch('/aboutme.nl.txt')
+    fetch(`/aboutme.${isNL() ? 'nl' : 'en' }.txt`)
       .then(res => res.text())
       .then(setAboutme)
   }, [])
