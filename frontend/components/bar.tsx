@@ -1,4 +1,4 @@
-import { faGithub } from '@fortawesome/free-brands-svg-icons'
+import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
@@ -13,12 +13,17 @@ export default function Bar() {
               <Link href='/'>Marnix</Link>
             </div>
             <div className='flex flex-row-reverse'>
-              <div className='mx-4'>
+              <div className='mr-4'>
                 <a href={`https://github.com/marnixah`}>
                   <FontAwesomeIcon icon={faGithub}></FontAwesomeIcon>
                 </a>
               </div>
-              <div>
+              <div className='mr-4'>
+                <a href='https://www.linkedin.com/in/marnix-hage/'>
+                  <FontAwesomeIcon icon={faLinkedin}></FontAwesomeIcon>
+                </a>
+              </div>
+              <div className='mr-4'>
                 <a href={`mailto:marnix@hagehoeve.com`}>
                   <FontAwesomeIcon icon={faEnvelope}></FontAwesomeIcon>
                 </a>
