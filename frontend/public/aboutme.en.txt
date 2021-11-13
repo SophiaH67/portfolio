@@ -1,5 +1,1 @@
-This is a big file
-
-describing a lot
-
-about me
+Hi, my name is Marnix. I'm a 16 year old dutch software developer currently studying at Landstede MBO. My favourite language to work in is TypeScript, with my favourite framework at the moment being Next.js. In my free time I work a lot on my personal projects, which you can find on my github at github.com/marnixah.
