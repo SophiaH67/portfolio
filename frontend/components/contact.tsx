@@ -55,7 +55,7 @@ export default function Contact() {
         <p className='text-center text-sm text-gray-800'>
           {isNL()
             ? 'Als je contact wilt opnemen met mij, kan dat hier'
-            : 'If you want to contact me, you can do sothrough this form'}
+            : 'If you want to contact me, you can do so through this form'}
         </p>
 
         <form onSubmit={onSubmit}>
