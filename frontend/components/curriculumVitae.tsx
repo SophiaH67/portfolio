@@ -2,6 +2,7 @@ import { getBackendBase } from '../lib/api'
 import { isNL } from '../lib/locale'
 import Button from './button'
 import FloatingCard from './floatingCard'
+import Linkify from 'react-linkify'
 
 export interface CurriculumVitaeProps {
   aboutme: string
@@ -17,7 +18,7 @@ export default function CurriculumVitae({ aboutme }: CurriculumVitaeProps) {
           <img className='w-full md:w-auto md:max-w-sm md:pr-2' src='https://picsum.photos/512/512' alt="Picture of Marnix" />
           <div className='p-1 md:p-0 md:flex md:flex-col md:justify-between'>
             <p className='w-full'>
-              {aboutme}
+              <Linkify>{aboutme}</Linkify>
             </p>
             <div className='flex justify-center'>
               <a href={`${getBackendBase()}/cv.pdf`} download>
