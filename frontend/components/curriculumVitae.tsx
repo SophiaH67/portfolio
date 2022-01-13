@@ -1,3 +1,4 @@
+import { getBackendBase } from '../lib/api'
 import { isNL } from '../lib/locale'
 import Button from './button'
 import FloatingCard from './floatingCard'
@@ -19,7 +20,9 @@ export default function CurriculumVitae({ aboutme }: CurriculumVitaeProps) {
               {aboutme}
             </p>
             <div className='flex justify-center'>
-              <Button className='bottom-0 mx-2 w-full md:w-auto'>Download CV</Button>
+              <a href={`${getBackendBase()}/cv.pdf`} download>
+                <Button className='bottom-0 mx-2 w-full md:w-auto' >Download CV</Button>
+              </a>
             </div>
           </div>
         </div>
