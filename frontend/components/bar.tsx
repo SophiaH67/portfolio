@@ -24,7 +24,7 @@ export default function Bar() {
                 </a>
               </div>
               <div className='mr-4'>
-                <a href={`mailto:marnix@hagehoeve.com`} aria-label="email" >
+                <a href={`mailto:contact@roboco.dev`} aria-label="email" >
                   <FontAwesomeIcon icon={faEnvelope}></FontAwesomeIcon>
                 </a>
               </div>
