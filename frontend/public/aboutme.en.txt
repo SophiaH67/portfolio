@@ -1,1 +1,1 @@
-Hi, my name is Sophia. I'm a software developer with a passion for creating innovative solutions. I love coding and doing devops, with this project running on my own kubernetes cluster. Below you can find some of my projects and interests!
+Hi, my name is Sophia. I'm a software developer with a passion for creating innovative solutions. I love coding and doing devops, with this project running on my own kubernetes cluster. I use conventional commits to keep my git log clean. Below you can find some of my projects and interests!
