@@ -34,14 +34,13 @@ export default function Projects() {
               className='mx-4 my-2'
               name={project.name}
               description_en={project.description_en}
-              description_nl={project.description_nl}
               link={project.link}
-              onSave={(name, description_en, description_nl, link) => {
+              onSave={(name, description_en, link) => {
                 let items = [...editing]
                 items[project.id] = false
                 setEditing(items)
 
-                updateProject(project.id, name, description_en, description_nl, link)
+                updateProject(project.id, name, description_en, link)
               }}
               onEdit={() => {
                 let items = [...editing]
@@ -61,10 +60,9 @@ export default function Projects() {
             className='mx-4 my-2'
             name='Project Name'
             description_en='Description'
-            description_nl='Beschrijving'
             link='https://example.com'
-            onSave={(name, description_en, description_nl, link) =>
-              createProject(name, description_en, description_nl, link)
+            onSave={(name, description_en, link) =>
+              createProject(name, description_en, link)
                 .then(() => setUpdate(Math.random()))
                 .catch((err: AxiosError) => {
                   const jsonBody = JSON.parse(err.request.response)

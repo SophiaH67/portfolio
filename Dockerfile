@@ -22,7 +22,7 @@ COPY ./backend/ .
 RUN npm install
 RUN npm run production
 
-FROM composer:latest AS laravel-composer-builder
+FROM composer:2.1.2 AS laravel-composer-builder
 WORKDIR /app
 # TODO Need to find a better way of doing this...
 COPY --from=laravel-node-builder /app/ /app/

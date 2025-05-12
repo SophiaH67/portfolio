@@ -17,7 +17,6 @@ class ProjectController extends Controller
         $validator = Validator::make($reqBody, [
             'name' => ['required', 'max:200', 'unique:projects'],
             'description_en' => ['required', 'max:3000', 'min:20'],
-            'description_nl' => ['required', 'max:3000', 'min:20'],
             'link' => ['required', 'url', 'max:200' ],
         ], ['name.unique' => 'A project with this name already exists']);
 
@@ -26,7 +25,6 @@ class ProjectController extends Controller
         $project = Project::create([
             "name" => $reqBody["name"],
             "description_en" => $reqBody["description_en"],
-            "description_nl" => $reqBody["description_nl"],
             "link" => $reqBody["link"],
         ]);
 
@@ -40,7 +38,6 @@ class ProjectController extends Controller
         $validator = Validator::make($reqBody, [
             'name' => ['required', 'max:200'],
             'description_en' => ['required', 'max:3000', 'min:20'],
-            'description_nl' => ['required', 'max:3000', 'min:20'],
             'link' => ['required', 'url', 'max:200' ],
         ]);
 
@@ -50,7 +47,6 @@ class ProjectController extends Controller
 
         $project->name = $reqBody["name"];
         $project->description_en = $reqBody["description_en"];
-        $project->description_nl = $reqBody["description_nl"];
         $project->link = $reqBody["link"];
 
         $project->save();

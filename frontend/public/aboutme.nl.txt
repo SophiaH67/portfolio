@@ -1,1 +1,0 @@
-Hallo, mijn naam is Marnix. Ik ben een 16 jarige Nederlandse applicatie ontwikkelaar die momenteel studeert aan Landstede MBO. Mijn favoriete taal om in te werken is TypeScript, en mijn favoriete framework op dit moment is Next.js. In mijn vrije tijd werk ik veel aan mijn persoonlijke projecten, die je kunt vinden op mijn github op github.com/marnixah.

@@ -1,0 +1,24 @@
+services:
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: laravel
+      POSTGRES_PASSWORD: mysecretpassword
+      POSTGRES_DB: portfolio
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 3123:80
+    environment:
+      APP_ENV: local
+      APP_key: RjbaxBkOoEkgtHcF30dUBYWSwwVtw1p8
+      APP_DEBUG: true
+      APP_URL: http://localhost
+      DB_CONNECTION: pgsql
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_DATABASE: portfolio
+      DB_USERNAME: laravel
+      DB_PASSWORD: mysecretpassword

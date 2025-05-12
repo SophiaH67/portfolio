@@ -47,7 +47,7 @@ export default function Modal() {
             let errors: string[] = []
             if (jsonBody.errors)
               Object.entries(jsonBody.errors).forEach(([_key, value]: [any, any]) =>
-                errors.push(...value)
+                errors.push(...value),
               )
             else errors.push(jsonBody.message)
             setFetchErrors(errors)

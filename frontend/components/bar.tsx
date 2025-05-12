@@ -10,21 +10,21 @@ export default function Bar() {
         <div className='container mx-auto px-6 py-4'>
           <div className='flex items-center justify-between'>
             <div className='text-black'>
-              <Link href='/'>Marnix</Link>
+              <Link href='/'>Sophia</Link>
             </div>
             <div className='flex flex-row-reverse'>
               <div className='mr-4'>
-                <a href={`https://github.com/marnixah`} aria-label="Github">
-                  <FontAwesomeIcon icon={faGithub}></FontAwesomeIcon>
+                <a href={`https://github.com/SophiaH67`} aria-label='Github'>
+                  <FontAwesomeIcon icon={faGithub} />
                 </a>
               </div>
               <div className='mr-4'>
-                <a href='https://www.linkedin.com/in/marnix-hage/' aria-label="Linkedin">
+                <a href='https://www.linkedin.com/in/sophia-hage/' aria-label='Linkedin'>
                   <FontAwesomeIcon icon={faLinkedin}></FontAwesomeIcon>
                 </a>
               </div>
               <div className='mr-4'>
-                <a href={`mailto:contact@roboco.dev`} aria-label="email" >
+                <a href={`mailto:contact@sophiah.dev`} aria-label='email'>
                   <FontAwesomeIcon icon={faEnvelope}></FontAwesomeIcon>
                 </a>
               </div>

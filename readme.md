@@ -1,6 +1,6 @@
 # Portfolio
 
-This is the source code to [my personal portfolio](https://www.marnixah.com/).
+This is the source code to [my personal portfolio](https://sophiah.dev/).
 
 ## Stack
 

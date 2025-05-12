@@ -1,1 +1,1 @@
-Hi, my name is Marnix. I'm a 16 year old dutch software developer currently studying at Landstede MBO. My favourite language to work in is TypeScript, with my favourite framework at the moment being Next.js. In my free time I work a lot on my personal projects, which you can find on my github at github.com/marnixah.
+Hi, my name is Sophia. I'm a software developer with a passion for creating innovative solutions. I love coding and doing devops, with this project running on my own kubernetes cluster. Below you can find some of my projects and interests!

@@ -1,7 +1,6 @@
 import axios, { AxiosError } from 'axios'
 import React, { FormEvent, useState } from 'react'
 import { getBackendBase } from '../lib/api'
-import { isNL } from '../lib/locale'
 import Button from './button'
 import FloatingCard from './floatingCard'
 import Input from './input'
@@ -36,7 +35,7 @@ export default function Contact() {
         },
       })
       .then(() => {
-        setSuccessMessage(isNL() ? 'Bericht is verzonden!' : 'Message succesfully sent!')
+        setSuccessMessage('Message succesfully sent!')
         setFetchErrors([])
       })
       .catch((err: AxiosError) => {
@@ -53,17 +52,15 @@ export default function Contact() {
       <>
         <h2 className='text-gray-800 font-semibold text-6xl text-center'>Contact</h2>
         <p className='text-center text-sm text-gray-800'>
-          {isNL()
-            ? 'Als je contact wilt opnemen met mij, kan dat hier'
-            : 'If you want to contact me, you can do so through this form'}
+          If you want to contact me, you can do so through this form
         </p>
 
         <form onSubmit={onSubmit}>
-          <Input description={isNL() ? 'Naam' : 'Name'} state={[name, setName]} type='name' />
+          <Input description={'Name'} state={[name, setName]} type='name' />
           <Input description='Email' state={[email, setEmail]} type='email' />
-          <label className='font-light text-gray-500 text-xs'>{isNL() ? 'Bericht' : 'Message'}</label>
+          <label className='font-light text-gray-500 text-xs'>{'Message'}</label>
           <TextareaAutosize
-            placeholder={isNL() ? 'Bericht' : 'Message'}
+            placeholder={'Message'}
             minRows={3}
             className='min-w-full border-2 border-gray-300 rounded-md p-1 my-1 focus:outline-none outline-none resize-none overflow-hidden'
             onInput={(e) => {
@@ -81,7 +78,7 @@ export default function Contact() {
             <label className='text-green-600 text-bold text-sm font-light'>{successMessage}</label>
           ) : null}
           <Button className='w-full' type='submit' disabled={submitting}>
-            {submitting ? <Loading /> : isNL() ? 'Stuur' : 'Send'}
+            {submitting ? <Loading /> : 'Send'}
           </Button>
         </form>
       </>
