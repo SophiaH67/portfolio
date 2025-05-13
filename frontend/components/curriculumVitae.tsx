@@ -1,4 +1,3 @@
-import { getBackendBase } from '../lib/api'
 import Button from './button'
 import FloatingCard from './floatingCard'
 import Linkify from 'react-linkify'
@@ -25,8 +24,8 @@ export default function CurriculumVitae({ aboutme }: CurriculumVitaeProps) {
               <Linkify>{aboutme}</Linkify>
             </p>
             <div className='flex justify-center'>
-              <a href={`${getBackendBase()}/cv.pdf`} download>
-                <Button className='bottom-0 mx-2 w-full md:w-auto'>Download CV</Button>
+              <a href="https://www.linkedin.com/in/sophia-hage/" download>
+                <Button className='bottom-0 mx-2 w-full md:w-auto'>View LinkedIn</Button>
               </a>
             </div>
           </div>
